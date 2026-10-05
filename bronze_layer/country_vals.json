@@ -1,0 +1,1877 @@
+{
+    "@odata.context": "https://ghoapi.azureedge.net/api/$metadata#Collection(Default.DIMENSION_VALUE)",
+    "value": [
+        {
+            "Code": "ABW",
+            "Title": "Aruba",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "AFG",
+            "Title": "Afghanistan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "AGO",
+            "Title": "Angola",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "AIA",
+            "Title": "Anguilla",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "ALB",
+            "Title": "Albania",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "AND",
+            "Title": "Andorra",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "ARE",
+            "Title": "United Arab Emirates",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "ARG",
+            "Title": "Argentina",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "ARM",
+            "Title": "Armenia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "ASM",
+            "Title": "American Samoa",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "ATG",
+            "Title": "Antigua and Barbuda",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "AUS",
+            "Title": "Australia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "AUT",
+            "Title": "Austria",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "AZE",
+            "Title": "Azerbaijan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "BDI",
+            "Title": "Burundi",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "BEL",
+            "Title": "Belgium",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "BEN",
+            "Title": "Benin",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "BES",
+            "Title": "Bonaire, Saint Eustatius and Saba",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "BFA",
+            "Title": "Burkina Faso",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "BGD",
+            "Title": "Bangladesh",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "SEAR",
+            "ParentTitle": "South-East Asia"
+        },
+        {
+            "Code": "BGR",
+            "Title": "Bulgaria",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "BHR",
+            "Title": "Bahrain",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "BHS",
+            "Title": "Bahamas",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "BIH",
+            "Title": "Bosnia and Herzegovina",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "BLR",
+            "Title": "Belarus",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "BLZ",
+            "Title": "Belize",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "BMU",
+            "Title": "Bermuda",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "BOL",
+            "Title": "Bolivia (Plurinational State of)",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "BRA",
+            "Title": "Brazil",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "BRB",
+            "Title": "Barbados",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "BRN",
+            "Title": "Brunei Darussalam",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "BTN",
+            "Title": "Bhutan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "SEAR",
+            "ParentTitle": "South-East Asia"
+        },
+        {
+            "Code": "BWA",
+            "Title": "Botswana",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "CAF",
+            "Title": "Central African Republic",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "CAN",
+            "Title": "Canada",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "CHE",
+            "Title": "Switzerland",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "CHI",
+            "Title": "Channel islands",
+            "Dimension": "COUNTRY",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "CHL",
+            "Title": "Chile",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "CHN",
+            "Title": "China",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "CIV",
+            "Title": "Cote d'Ivoire",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "CMR",
+            "Title": "Cameroon",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "COD",
+            "Title": "Democratic Republic of the Congo",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "COG",
+            "Title": "Congo",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "COK",
+            "Title": "Cook Islands",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "COL",
+            "Title": "Colombia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "COM",
+            "Title": "Comoros",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "CPV",
+            "Title": "Cabo Verde",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "CRI",
+            "Title": "Costa Rica",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "CUB",
+            "Title": "Cuba",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "CUW",
+            "Title": "Cura\u00e7ao",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "CYM",
+            "Title": "Cayman Islands",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "CYP",
+            "Title": "Cyprus",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "CZE",
+            "Title": "Czechia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "DEU",
+            "Title": "Germany",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "DJI",
+            "Title": "Djibouti",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "DMA",
+            "Title": "Dominica",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "DNK",
+            "Title": "Denmark",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "DOM",
+            "Title": "Dominican Republic",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "DZA",
+            "Title": "Algeria",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "ECU",
+            "Title": "Ecuador",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "EGY",
+            "Title": "Egypt",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "ERI",
+            "Title": "Eritrea",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "ESP",
+            "Title": "Spain",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "EST",
+            "Title": "Estonia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "ETH",
+            "Title": "Ethiopia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "FIN",
+            "Title": "Finland",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "FJI",
+            "Title": "Fiji",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "FLK",
+            "Title": "Falkland Islands (Malvinas)",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "FRA",
+            "Title": "France",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "FRO",
+            "Title": "Faroe Islands",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "FSM",
+            "Title": "Micronesia (Federated States of)",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "GAB",
+            "Title": "Gabon",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "GBR",
+            "Title": "United Kingdom of Great Britain and Northern Ireland",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "GEO",
+            "Title": "Georgia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "GHA",
+            "Title": "Ghana",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "GIB",
+            "Title": "Gibraltar",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "GIN",
+            "Title": "Guinea",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "GLP",
+            "Title": "Guadeloupe",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "GMB",
+            "Title": "Gambia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "GNB",
+            "Title": "Guinea-Bissau",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "GNQ",
+            "Title": "Equatorial Guinea",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "GRC",
+            "Title": "Greece",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "GRD",
+            "Title": "Grenada",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "GRL",
+            "Title": "Greenland",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "GTM",
+            "Title": "Guatemala",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "GUF",
+            "Title": "French Guiana",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "GUM",
+            "Title": "Guam",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "GUY",
+            "Title": "Guyana",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "HKG",
+            "Title": "China, Hong Kong Special Administrative Region",
+            "Dimension": "COUNTRY",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "HND",
+            "Title": "Honduras",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "HRV",
+            "Title": "Croatia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "HTI",
+            "Title": "Haiti",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "HUN",
+            "Title": "Hungary",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "IDN",
+            "Title": "Indonesia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "IMN",
+            "Title": "Isle of Man",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "IND",
+            "Title": "India",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "SEAR",
+            "ParentTitle": "South-East Asia"
+        },
+        {
+            "Code": "IRL",
+            "Title": "Ireland",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "IRN",
+            "Title": "Iran (Islamic Republic of)",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "IRQ",
+            "Title": "Iraq",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "ISL",
+            "Title": "Iceland",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "ISR",
+            "Title": "Israel",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "ITA",
+            "Title": "Italy",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "JAM",
+            "Title": "Jamaica",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "JOR",
+            "Title": "Jordan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "JPN",
+            "Title": "Japan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "KAZ",
+            "Title": "Kazakhstan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "KEN",
+            "Title": "Kenya",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "KGZ",
+            "Title": "Kyrgyzstan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "KHM",
+            "Title": "Cambodia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "KIR",
+            "Title": "Kiribati",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "KNA",
+            "Title": "Saint Kitts and Nevis",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "KOR",
+            "Title": "Republic of Korea",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "KWT",
+            "Title": "Kuwait",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "LAO",
+            "Title": "Lao People's Democratic Republic",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "LBN",
+            "Title": "Lebanon",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "LBR",
+            "Title": "Liberia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "LBY",
+            "Title": "Libya",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "LCA",
+            "Title": "Saint Lucia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "LIE",
+            "Title": "Liechtenstein",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "LKA",
+            "Title": "Sri Lanka",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "SEAR",
+            "ParentTitle": "South-East Asia"
+        },
+        {
+            "Code": "LSO",
+            "Title": "Lesotho",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "LTU",
+            "Title": "Lithuania",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "LUX",
+            "Title": "Luxembourg",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "LVA",
+            "Title": "Latvia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "MAC",
+            "Title": "China, Macao Special Administrative Region",
+            "Dimension": "COUNTRY",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "MAR",
+            "Title": "Morocco",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "MCO",
+            "Title": "Monaco",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "MDA",
+            "Title": "Republic of Moldova",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "MDG",
+            "Title": "Madagascar",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "MDV",
+            "Title": "Maldives",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "SEAR",
+            "ParentTitle": "South-East Asia"
+        },
+        {
+            "Code": "ME1",
+            "Title": "The former state union Serbia and Montenegro",
+            "Dimension": "COUNTRY",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "MEX",
+            "Title": "Mexico",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "MHL",
+            "Title": "Marshall Islands",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "MKD",
+            "Title": "North Macedonia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "MLI",
+            "Title": "Mali",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "MLT",
+            "Title": "Malta",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "MMR",
+            "Title": "Myanmar",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "SEAR",
+            "ParentTitle": "South-East Asia"
+        },
+        {
+            "Code": "MNE",
+            "Title": "Montenegro",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "MNG",
+            "Title": "Mongolia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "MNP",
+            "Title": "Northern Mariana Islands",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "MOZ",
+            "Title": "Mozambique",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "MRT",
+            "Title": "Mauritania",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "MSR",
+            "Title": "Montserrat",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "MTQ",
+            "Title": "Martinique",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "MUS",
+            "Title": "Mauritius",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "MWI",
+            "Title": "Malawi",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "MYS",
+            "Title": "Malaysia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "MYT",
+            "Title": "Mayotte",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "NAM",
+            "Title": "Namibia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "NCL",
+            "Title": "New Caledonia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "NER",
+            "Title": "Niger",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "NGA",
+            "Title": "Nigeria",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "NIC",
+            "Title": "Nicaragua",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "NIU",
+            "Title": "Niue",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "NLD",
+            "Title": "Netherlands (Kingdom of the)",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "NOR",
+            "Title": "Norway",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "NPL",
+            "Title": "Nepal",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "SEAR",
+            "ParentTitle": "South-East Asia"
+        },
+        {
+            "Code": "NRU",
+            "Title": "Naoero",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "NZL",
+            "Title": "New Zealand",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "OMN",
+            "Title": "Oman",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "PAK",
+            "Title": "Pakistan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "PAN",
+            "Title": "Panama",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "PER",
+            "Title": "Peru",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "PHL",
+            "Title": "Philippines",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "PLW",
+            "Title": "Palau",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "PNG",
+            "Title": "Papua New Guinea",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "POL",
+            "Title": "Poland",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "PRI",
+            "Title": "Puerto Rico",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "PRK",
+            "Title": "Democratic People's Republic of Korea",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "SEAR",
+            "ParentTitle": "South-East Asia"
+        },
+        {
+            "Code": "PRS",
+            "Title": "Pristina",
+            "Dimension": "COUNTRY",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "PRT",
+            "Title": "Portugal",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "PRY",
+            "Title": "Paraguay",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "PSE",
+            "Title": "occupied Palestinian territory, including east Jerusalem",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "PYF",
+            "Title": "French Polynesia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "QAT",
+            "Title": "Qatar",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "REU",
+            "Title": "Reunion",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "ROU",
+            "Title": "Romania",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "RUS",
+            "Title": "Russian Federation",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "RWA",
+            "Title": "Rwanda",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "SAU",
+            "Title": "Saudi Arabia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "SDN",
+            "Title": "Sudan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "SDN736",
+            "Title": "Sudan (former)",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "SEN",
+            "Title": "Senegal",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "SGP",
+            "Title": "Singapore",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "SHN",
+            "Title": "St Helena, Ascension and Tristan da Cunha",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "SLB",
+            "Title": "Solomon Islands",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "SLE",
+            "Title": "Sierra Leone",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "SLV",
+            "Title": "El Salvador",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "SMR",
+            "Title": "San Marino",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "SOM",
+            "Title": "Somalia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "SPM",
+            "Title": "Saint Pierre and Miquelon",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "SRB",
+            "Title": "Serbia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "SSD",
+            "Title": "South Sudan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "STP",
+            "Title": "Sao Tome and Principe",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "SUR",
+            "Title": "Suriname",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "SVK",
+            "Title": "Slovakia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "SVN",
+            "Title": "Slovenia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "SWE",
+            "Title": "Sweden",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "SWZ",
+            "Title": "Eswatini",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "SXM",
+            "Title": "Sint Maarten (Dutch part)",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "SYC",
+            "Title": "Seychelles",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "SYR",
+            "Title": "Syrian Arab Republic",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "TCA",
+            "Title": "Turks and Caicos Islands",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "TCD",
+            "Title": "Chad",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "TGO",
+            "Title": "Togo",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "THA",
+            "Title": "Thailand",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "SEAR",
+            "ParentTitle": "South-East Asia"
+        },
+        {
+            "Code": "TJK",
+            "Title": "Tajikistan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "TKL",
+            "Title": "Tokelau",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "TKM",
+            "Title": "Turkmenistan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "TLS",
+            "Title": "Timor-Leste",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "SEAR",
+            "ParentTitle": "South-East Asia"
+        },
+        {
+            "Code": "TON",
+            "Title": "Tonga",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "TTO",
+            "Title": "Trinidad and Tobago",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "TUN",
+            "Title": "Tunisia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "TUR",
+            "Title": "T\u00fcrkiye",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "TUV",
+            "Title": "Tuvalu",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "TZA",
+            "Title": "United Republic of Tanzania",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "UGA",
+            "Title": "Uganda",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "UKR",
+            "Title": "Ukraine",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "URY",
+            "Title": "Uruguay",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "USA",
+            "Title": "United States of America",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "UZB",
+            "Title": "Uzbekistan",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EUR",
+            "ParentTitle": "Europe"
+        },
+        {
+            "Code": "VCT",
+            "Title": "Saint Vincent and the Grenadines",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "VEN",
+            "Title": "Venezuela (Bolivarian Republic of)",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "VGB",
+            "Title": "British Virgin Islands",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "VIR",
+            "Title": "Virgin Islands (USA)",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AMR",
+            "ParentTitle": "Americas"
+        },
+        {
+            "Code": "VNM",
+            "Title": "Viet Nam",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "VUT",
+            "Title": "Vanuatu",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "WLF",
+            "Title": "Wallis and Futuna Islands",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "WSM",
+            "Title": "Samoa",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "WPR",
+            "ParentTitle": "Western Pacific"
+        },
+        {
+            "Code": "XKX",
+            "Title": "Kosovo (in accordance with UN Security Council resolution 1244 (1999))",
+            "Dimension": "COUNTRY",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "YEM",
+            "Title": "Yemen",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "EMR",
+            "ParentTitle": "Eastern Mediterranean"
+        },
+        {
+            "Code": "ZAF",
+            "Title": "South Africa",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "ZMB",
+            "Title": "Zambia",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        },
+        {
+            "Code": "ZWE",
+            "Title": "Zimbabwe",
+            "Dimension": "COUNTRY",
+            "ParentDimension": "REGION",
+            "ParentCode": "AFR",
+            "ParentTitle": "Africa"
+        }
+    ]
+}
