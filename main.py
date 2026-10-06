@@ -48,11 +48,14 @@ def get_le_birth():
 
 # retrieve data for this Indicator: WHOSIS_0000015, Healthy life expectancy at birth
 def get_hle_birth():
-    endpoint = f"{url}/api/WHOSIS_0000015"
+    endpoint = f"{url}/api/WHOSIS_000015"
     fetch_data("h_life_expectancy_at_birth", endpoint)
 
 
 get_all_dimensions()
 get_all_indicators()
-get_adult_mortality()
 get_country_vals()
+get_adult_mortality()
+get_le_birth()
+get_hle_birth()
+
