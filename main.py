@@ -4,73 +4,52 @@ import requests
 url = 'https://ghoapi.azureedge.net'
 
 ## Phase 1 -- Extraction
-def get_all_dimensions():
-    endpoint = f'{url}/api/Dimension'
-    
 
+def fetch_data(filename, ep):
+    
     try:
+        response = requests.get(ep)
         data = response.json()
-        response = requests.get(endpoint)
-        json_file = open("bronze_layer/dimensions.json", "w")
-        json.dump(data, json_file, indent = 4)
-        #print(data)
-        
-        json_file.close()
-        print("Data ingested successfully!")
-    except:
-        print("Unable to fetch data from api endpoint for some reason")
+        if response.status_code == 200:
+
+            json_file = open(f"bronze_layer/{filename}.json", "w")
+            json.dump(data, json_file, indent = 4)
+            json_file.close()
+        else:
+            return None
+        print(f"{filename} data ingested successfully!")
+    except Exception as e:
+        print("Unable to fetch data from api endpoint: ", e)
+
+
+def get_all_dimensions():
+    endpoint = f'{url}/api/Dimension'  
+    fetch_data("dimensions", endpoint)
 
 
 def get_all_indicators():
     endpoint = f"{url}/api/Indicator"
-    
-
-    try:
-        response = requests.get(endpoint)
-        data = response.json()
-        json_file = open("bronze_layer/indicators.json", "w")
-        json.dump(data, json_file, indent = 4)
-        #print(data)
-
-        json_file.close()
-        print("Data ingested successfully!")
-    except:
-        print("Unable to fetch data from api endpoint for some reason")
-
-# retrieve data for this Indicator: WHOSIS_000004, Adult mortality rate
-def get_adult_mortality():
-    endpoint = f"{url}/api/WHOSIS_000004"
-    
-
-    try:
-        response = requests.get(endpoint)
-        data = response.json()
-        json_file = open("bronze_layer/adult_mortality.json", "w")
-        json.dump(data, json_file, indent = 4)
-        #print(data)
-
-        json_file.close()
-        print("Data ingested successfully!")
-    except:
-        print("Unable to fetch data from api endpoint for some reason")
+    fetch_data("indicators", endpoint)
 
 #  to retrieve the list of the COUNTRY dimension values
 def get_country_vals():
     endpoint = f"{url}/api/DIMENSION/COUNTRY/DimensionValues"
-    
+    fetch_data("country_vals", endpoint)
 
-    try:
-        response = requests.get(endpoint)
-        data = response.json()
-        json_file = open("bronze_layer/country_vals.json", "w")
-        json.dump(data, json_file, indent = 4)
-        #print(data)
+# retrieve data for this Indicator: WHOSIS_000004, Adult mortality rate
+def get_adult_mortality():
+    endpoint = f"{url}/api/WHOSIS_000004"
+    fetch_data("adult_mortality", endpoint)
 
-        json_file.close()
-        print("Data ingested successfully!")
+# retrieve data for this Indicator: WHOSIS_000001, Life expectancy at birth
+def get_le_birth():
+    endpoint = f"{url}/api/WHOSIS_000001"
+    fetch_data("life_expectancy_at_birth", endpoint)
 
-    except:
-        print("Unable to fetch data from api endpoint for some reason")
+# retrieve data for this Indicator: WHOSIS_0000015, Healthy life expectancy at birth
+def get_hle_birth():
+    endpoint = f"{url}/api/WHOSIS_0000015"
+    fetch_data("h_life_expectancy_at_birth", endpoint)
 
 
 get_all_dimensions()
