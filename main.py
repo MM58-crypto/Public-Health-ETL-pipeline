@@ -58,6 +58,24 @@ def get_country_vals():
     endpoint = f"{url}/api/DIMENSION/COUNTRY/DimensionValues"
     return fetch_data("country_vals", endpoint)
 
+
+# retrieve reference values for the SEX dimension
+def get_sex_vals():
+    endpoint = f"{url}/api/DIMENSION/SEX/DimensionValues"
+    return fetch_data("sex_vals", endpoint)
+
+
+# retrieve reference values for the REGION dimension
+def get_region_vals():
+    endpoint = f"{url}/api/DIMENSION/REGION/DimensionValues"
+    return fetch_data("region_vals", endpoint)
+
+
+# retrieve reference values for the WORLDBANKINCOMEGROUP dimension
+def get_income_group_vals():
+    endpoint = f"{url}/api/DIMENSION/WORLDBANKINCOMEGROUP/DimensionValues"
+    return fetch_data("income_group_vals", endpoint)
+
 # retrieve data for this Indicator: WHOSIS_000004, Adult mortality rate
 def get_adult_mortality():
     endpoint = f"{url}/api/WHOSIS_000004"
@@ -80,6 +98,9 @@ def main():
         get_all_dimensions,
         get_all_indicators,
         get_country_vals,
+        get_sex_vals,
+        get_region_vals,
+        get_income_group_vals,
         get_adult_mortality,
         get_le_birth,
         get_hale_birth,

@@ -1,0 +1,349 @@
+{
+    "@odata.context": "https://ghoapi.azureedge.net/api/$metadata#Collection(Default.DIMENSION_VALUE)",
+    "value": [
+        {
+            "Code": "AFR",
+            "Title": "Africa",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "AMR",
+            "Title": "Americas",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "EMR",
+            "Title": "Eastern Mediterranean",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "EUR",
+            "Title": "Europe",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_AFRD",
+            "Title": "Africa region, stratum D (AFR D)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_AFRE",
+            "Title": "Africa region, stratum E(AFR E)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_AMRA",
+            "Title": "Americas region, stratum A (AMR A)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_AMRB",
+            "Title": "Americas region, stratum B (AMR B)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_AMRD",
+            "Title": "Americas region, stratum D (AMR D)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_EMRB",
+            "Title": "Eastern Mediterranean region, stratum B (EMR B)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_EMRD",
+            "Title": "Eastern Mediterranean region, stratum D (EMR D)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_EURA",
+            "Title": "Europe region, stratum A (EUR A)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_EURB",
+            "Title": "Europe region, stratum B (EUR B)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_EURC",
+            "Title": "Europe region, stratum C (EUR C)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_SEARB",
+            "Title": "South East Asia region, stratum B (SEAR B)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_SEARD",
+            "Title": "South East Asia region, stratum D (SEAR D)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_WPRA",
+            "Title": "Western Pacific region, stratum A (WPR A)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "GBD_REG14_WPRB",
+            "Title": "Western Pacific region, stratum B (WPR B)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "NC",
+            "Title": "Not classified",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "NOTSPEC",
+            "Title": "Not specified",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "OECD_HII_AMR",
+            "Title": "Americas, high-income OECD",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "OECD_HII_EUR",
+            "Title": "Europe, high-income OECD",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "OECD_HII_WPR",
+            "Title": "Western Pacific , high-income OECD",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "OECD_NON_AFR",
+            "Title": "Africa (non-OECD)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "OECD_NON_AMR",
+            "Title": "Americas, non-OECD",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "OECD_NON_EMR",
+            "Title": "Eastern Mediterranean (non-OECD)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "OECD_NON_EUR",
+            "Title": "Europe, non-OECD",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "OECD_NON_SEAR",
+            "Title": "South-East Asia (non-OECD)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "OECD_NON_WPR",
+            "Title": "Western Pacific, non-OECD",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "SEAR",
+            "Title": "South-East Asia",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "SEAR_W_IDN",
+            "Title": "South-East Asia with Indonesia",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WHO_HI_GLOBAL",
+            "Title": "WHO High income countries of the world",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WHO_LMI_AFR",
+            "Title": "Low-and-middle-income countries of the African Region",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WHO_LMI_AMR",
+            "Title": "Low-and-middle-income countries of the Americas",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WHO_LMI_EMR",
+            "Title": "Low-and-middle-income countries of the Eastern Mediterranean Region",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WHO_LMI_EUR",
+            "Title": "Low-and-middle-income countries of the European Region",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WHO_LMI_HIC",
+            "Title": "High income countries",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WHO_LMI_SEAR",
+            "Title": "Low-and-middle-income countries of the South-East Asia Region",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WHO_LMI_WORLD",
+            "Title": "Global (WHO LMI)",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WHO_LMI_WPR",
+            "Title": "Low-and-middle-income countries of the Western Pacific Region",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WHO_NONMEM",
+            "Title": "WHO Non Members",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WPR",
+            "Title": "Western Pacific",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WPR_WO_IDN",
+            "Title": "Western Pacific without Indonesia",
+            "Dimension": "REGION",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        }
+    ]
+}

@@ -1,0 +1,69 @@
+{
+    "@odata.context": "https://ghoapi.azureedge.net/api/$metadata#Collection(Default.DIMENSION_VALUE)",
+    "value": [
+        {
+            "Code": "NA",
+            "Title": "NA",
+            "Dimension": "WORLDBANKINCOMEGROUP",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "NOA",
+            "Title": "Not included",
+            "Dimension": "WORLDBANKINCOMEGROUP",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WB_HI",
+            "Title": "High-income",
+            "Dimension": "WORLDBANKINCOMEGROUP",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WB_LI",
+            "Title": "Low-income",
+            "Dimension": "WORLDBANKINCOMEGROUP",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WB_LIMI",
+            "Title": "Low- and middle-income",
+            "Dimension": "WORLDBANKINCOMEGROUP",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WB_LMI",
+            "Title": "Lower-middle-income",
+            "Dimension": "WORLDBANKINCOMEGROUP",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WB_MI",
+            "Title": "Middle-income",
+            "Dimension": "WORLDBANKINCOMEGROUP",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        },
+        {
+            "Code": "WB_UMI",
+            "Title": "Upper-middle-income",
+            "Dimension": "WORLDBANKINCOMEGROUP",
+            "ParentDimension": null,
+            "ParentCode": null,
+            "ParentTitle": null
+        }
+    ]
+}

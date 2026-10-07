@@ -83,9 +83,12 @@ class IngestionTests(unittest.TestCase):
         self.assertEqual(Path("bronze_layer").read_text(), "not a directory")
 
     def test_failed_run_still_saves_later_datasets(self):
-        responses = [response("Unavailable", 503)]
-        responses.extend(response('{"value": []}') for _ in range(5))
-        with patch("main.requests.get", side_effect=responses):
+        def get_response(endpoint, **kwargs):
+            if endpoint.endswith("/api/Dimension"):
+                return response("Unavailable", 503)
+            return response('{"value": []}')
+
+        with patch("main.requests.get", side_effect=get_response):
             with self.assertLogs("main", level="ERROR"):
                 self.assertEqual(main.main(), 1)
         self.assertFalse(Path("bronze_layer/dimensions.json").exists())
