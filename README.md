@@ -8,7 +8,7 @@ This project explores those questions by building a data pipeline around the Wor
 
 For readers interested in public health, the project offers a path toward clearer country comparisons and historical trends. For technical readers, it demonstrates the engineering behind those comparisons: API ingestion, raw data preservation, data quality checks, and dimensional modelling.
 
-> **Status: early development.** The current implementation is a Python ingestion prototype focused on the bronze layer. Silver and gold transformations are planned and have not been implemented.
+> **Status: early development.** Bronze ingestion and validated silver Parquet transformations are implemented. Gold analytical models remain planned.
 
 ## What this project aims to explore
 
@@ -26,15 +26,15 @@ Together, these measures could support questions about changes over time, differ
 
 ## The pipeline
 
-The planned architecture follows three layers:
+The architecture follows three layers:
 
 | Layer | Purpose | Status |
 | --- | --- | --- |
 | **Bronze** | Preserve source responses and ingestion context | Prototype in progress |
-| **Silver** | Standardize fields, resolve reference codes, and validate observations | Planned |
+| **Silver** | Standardize fields, resolve reference codes, and validate observations | Implemented |
 | **Gold** | Organize health metrics into analytical fact and dimension tables | Planned |
 
-Python and `requests` currently handle extraction, with JSON used for raw storage. Pandas and PyArrow are selected for the planned silver transformations and Parquet outputs. DuckDB and dbt remain optional later choices, not current dependencies.
+Python and `requests` handle extraction, with JSON used for raw storage. Pandas performs silver transformations and PyArrow writes typed Parquet outputs. DuckDB and dbt remain optional later choices, not current dependencies.
 
 ## What works today
 
@@ -64,13 +64,13 @@ The prototype still overwrites files on successful retrieval. Request and respon
 
 A health observation is more than a country and a year. Records may also distinguish sex, age group, geographic level, or other population categories. Ignoring these distinctions can mix totals with subgroups or produce misleading comparisons.
 
-The pipeline will preserve that context, distinguish numeric estimates from formatted display values, and retain uncertainty bounds where provided. Analytical models will also account for differences in units and reporting periods across indicators.
+Silver preserves geographic context, distinguishes numeric estimates from formatted display values, and retains uncertainty bounds where provided. Reference tables resolve source codes without mixing countries and aggregates. Analytical models must also account for differences in units and estimation releases.
 
-## Silver schema draft
+## Silver schema
 
-**Design only: no silver transformation code or outputs exist yet.** The first implementation will use Pandas for transformations and PyArrow for Parquet storage. It will read stored bronze JSON, not call the API. The retrieved observations are the accepted project scope; proving source completeness is not a prerequisite.
+`silver.py` uses Pandas for transformations and PyArrow for Parquet storage. It reads stored bronze JSON and does not call the API. The retrieved observations are the accepted project scope; proving source completeness is not a prerequisite.
 
-### Proposed outputs
+### Outputs
 
 ```text
 silver_layer/
@@ -82,11 +82,11 @@ silver_layer/
   ref_income_groups.parquet
 ```
 
-These are normalized silver tables, not a gold star schema. Each run will rebuild them from the selected bronze inputs rather than append observations from multiple snapshots. Bronze remains unchanged.
+These are normalized silver tables, not a gold star schema. Each run rebuilds them from the selected bronze inputs rather than appending observations from multiple snapshots. Bronze remains unchanged.
 
 ### Health observations
 
-Combine `adult_mortality.json`, `life_expectancy_at_birth.json`, and `hale_at_birth.json` into one long-form table. Proposed grain:
+`adult_mortality.json`, `life_expectancy_at_birth.json`, and `hale_at_birth.json` are combined into one long-form table with this grain:
 
 ```text
 indicator_code + location_type + location_code + year + sex_code
@@ -94,7 +94,7 @@ indicator_code + location_type + location_code + year + sex_code
 
 This grain applies to the audited indicators only: `TimeDimType` is `YEAR`, `Dim1Type` is `SEX`, and the other breakdown/source dimensions are null. Unexpected dimension types or newly populated additional dimensions must fail validation rather than be silently discarded.
 
-Proposed types below are Parquet/Arrow types; nullable integer values should use a nullable Pandas dtype during transformation.
+Types below are enforced in the Parquet/Arrow schema. Numeric conversions use nullable Pandas dtypes before writing. Invalid conversions fail instead of silently becoming null or truncated integers.
 
 | Column | Type | Nullable | Source / rule |
 | --- | --- | --- | --- |
@@ -130,7 +130,7 @@ All reference code/name columns are non-null strings. Keys must be unique within
 | `ref_regions` | `region_code` (key), `region_name` | `region_vals.json`; retain all returned groupings, not only the six used by current observations |
 | `ref_income_groups` | `income_group_code` (key), `income_group_name` | `income_group_vals.json`; retain all returned categories |
 
-The indicator catalogue does not supply units or full definitions. The planned enrichment must explicitly associate `WHOSIS_000001` and `WHOSIS_000002` with years, and `WHOSIS_000004` with the probability of dying between ages 15 and 60 expressed per 1,000. Metadata sources: [life expectancy](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/life-expectancy), [HALE](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/gho-ghe-hale-healthy-life-expectancy), and [adult mortality](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/adult-mortality-rate-%28probability-of-dying-between-15-and-60-years-per-1000-population%29). `dimensions.json` remains supporting bronze metadata; it does not need a separate analytical table in the initial silver layer.
+The indicator catalogue does not supply units or full definitions. `silver.py` enriches the selected catalogue entries using an explicit definition mapping: `WHOSIS_000001` and `WHOSIS_000002` use `years`; `WHOSIS_000004` uses `per_1000`, the probability of dying between ages 15 and 60 expressed per 1,000. Metadata sources: [life expectancy](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/life-expectancy), [HALE](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/gho-ghe-hale-healthy-life-expectancy), and [adult mortality](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/adult-mortality-rate-%28probability-of-dying-between-15-and-60-years-per-1000-population%29). `dimensions.json` remains supporting bronze metadata and is not required by the silver transformation.
 
 Location joins must use both type and code: COUNTRY uses `ref_countries`, REGION uses `ref_regions`, and WORLDBANKINCOMEGROUP uses `ref_income_groups`. Keep `GLOBAL` observations with their original location type/code; an unmatched reference join must not drop them.
 
@@ -146,33 +146,50 @@ Income-group references label existing aggregate observations. They do not assig
 6. Reconcile transformed observation counts with the input files, not an assumed WHO source total. Report validation failures and do not publish a successful silver run when checks fail.
 7. Write the validated Parquet tables. Reprocessing unchanged inputs and the same definition mapping must produce equivalent analytical rows.
 
+Required inputs must contain nonempty collections with the expected fields, including fields whose values may legitimately be null. All transformations, reference checks, and Arrow conversions finish before output publication. Output rows are sorted by their keys for reproducibility.
+
+All six Parquet files are written to a temporary staging directory before any existing file is replaced. Validation or staging-write failures leave previous outputs untouched. Replacements are atomic **per file**, not a transaction across all six files: an interruption during replacement can leave a mixed set. Rerun the full transformation to rebuild it, and do not treat an unsuccessful run as a valid new silver dataset.
+
 For analysis across all three indicators, use matching geography/year/sex keys; the audited shared period is 2000-2021. Do not remove the additional 2022-2023 LE/HALE rows from silver. Matching keys or source dates alone does not establish methodological comparability between estimation releases.
 
-## Run the current prototype
+## Run the pipeline
 
-With Python installed, run these commands from the directory containing `main.py`:
+Python 3.11 was used for verification. From the project root:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install requests
+pip install -r requirements.txt
 python main.py
+python silver.py
 ```
 
-An internet connection and an accessible GHO API are required. Review the output files after execution; the current success messages do not establish that every dataset is complete.
+`main.py` requires internet access and refreshes all nine bronze datasets, overwriting their existing files. If the bronze files are already available, skip ingestion and run only `silver.py`; transformation is offline.
 
-Run the ingestion regression checks with:
+Silver requires the three observation files plus `indicators.json`, `country_vals.json`, `sex_vals.json`, `region_vals.json`, and `income_group_vals.json`. It exits with code `0` only after all six outputs have been written, or `1` on input, validation, conversion, or filesystem failure. Errors are logged to stderr.
+
+Custom input/output directories are supported:
+
+```bash
+python silver.py --bronze-dir bronze_layer --silver-dir silver_layer
+```
+
+Input paths recorded in `source_file` are relative to the project root, including when a custom input directory is used. Importing `silver.py` does not run the pipeline.
+
+Run ingestion and silver regression checks with:
 
 ```bash
 python -B -m unittest discover -s tests -v
 ```
 
-These checks use temporary directories and simulated HTTP responses; they do not contact WHO or overwrite stored datasets.
+The checks use temporary directories; ingestion HTTP responses are simulated, and silver tests exercise real Parquet output. They do not contact WHO or overwrite project datasets. They cover preservation of nulls and aggregates, local-calendar date handling, reference joins, duplicate keys, invalid dimensions and numbers, repeatability, and failure-safe staging.
+
+The verified project-data run produced 41,160 observations, 3 indicator references, 234 country references, 4 sex references, 43 region references, and 8 income-group references. Counts are observations from that run, not hard-coded expectations or claims about WHO completeness.
 
 ## Next milestones
 
-- Review the silver schema draft and implement Pandas/PyArrow transformations over stored bronze inputs.
-- Validate silver types, reference joins, observation grain, and input-to-output row accounting.
+- Explore the silver tables with reproducible analytical queries and compare compatible country/year/sex observations.
+- Define gold model grains and measures from the validated silver outputs.
 - Improve bronze persistence and run history separately, without making completeness verification a prerequisite for silver.
 - Build gold analytical models after the silver contract is stable.
 - Document analytical examples as the pipeline matures.
