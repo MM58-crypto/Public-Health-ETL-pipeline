@@ -82,7 +82,7 @@ silver_layer/
   ref_income_groups.parquet
 ```
 
-These are normalized silver tables, not a gold star schema. Each run rebuilds them from the selected bronze inputs rather than appending observations from multiple snapshots. Bronze remains unchanged.
+These are silver observations and reference tables, not a gold star schema. Observations include `indicator_name` as a convenience label from `ref_indicators`; the business key remains unchanged. Each run rebuilds the tables from the selected bronze inputs rather than appending observations from multiple snapshots. Bronze remains unchanged.
 
 ### Health observations
 
@@ -99,6 +99,7 @@ Types below are enforced in the Parquet/Arrow schema. Numeric conversions use nu
 | Column | Type | Nullable | Source / rule |
 | --- | --- | --- | --- |
 | `indicator_code` | string | No | `IndicatorCode`; join to `ref_indicators` |
+| `indicator_name` | string | No | Resolve `indicator_code` through the validated `ref_indicators` table; sourced from bronze `indicators.json` |
 | `location_type` | string | No | `SpatialDimType`; retain COUNTRY, REGION, WORLDBANKINCOMEGROUP, and GLOBAL separately |
 | `location_code` | string | No | `SpatialDim`; never label every location as a country |
 | `year` | int16 | No | `TimeDim`, after validating the YEAR time type |

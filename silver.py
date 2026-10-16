@@ -47,6 +47,7 @@ OBSERVATION_COLUMNS = [
 REFERENCE_COLUMNS = ["Code", "Title", "Dimension", "ParentDimension", "ParentCode", "ParentTitle"]
 OBSERVATION_SCHEMA = pa.schema([
     pa.field("indicator_code", pa.string(), nullable=False),
+    pa.field("indicator_name", pa.string(), nullable=False),
     pa.field("location_type", pa.string(), nullable=False),
     pa.field("location_code", pa.string(), nullable=False),
     pa.field("year", pa.int16(), nullable=False),
@@ -229,6 +230,8 @@ def build_observations(bronze_dir, references):
     })
     unique(observations, GRAIN, "health observations")
     members(observations["indicator_code"], references["ref_indicators"]["indicator_code"], "indicator")
+    indicator_names = references["ref_indicators"].set_index("indicator_code")["indicator_name"]
+    observations["indicator_name"] = observations["indicator_code"].map(indicator_names)
     members(observations["sex_code"], references["ref_sexes"]["sex_code"], "sex")
     members(observations["location_type"], ["COUNTRY", "REGION", "WORLDBANKINCOMEGROUP", "GLOBAL"], "location type")
     for location_type, table, key in [
