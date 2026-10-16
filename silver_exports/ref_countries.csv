@@ -1,0 +1,235 @@
+country_code,country_name,region_code,source_file
+ABW,Aruba,AMR,bronze_layer/country_vals.json
+AFG,Afghanistan,EMR,bronze_layer/country_vals.json
+AGO,Angola,AFR,bronze_layer/country_vals.json
+AIA,Anguilla,AMR,bronze_layer/country_vals.json
+ALB,Albania,EUR,bronze_layer/country_vals.json
+AND,Andorra,EUR,bronze_layer/country_vals.json
+ARE,United Arab Emirates,EMR,bronze_layer/country_vals.json
+ARG,Argentina,AMR,bronze_layer/country_vals.json
+ARM,Armenia,EUR,bronze_layer/country_vals.json
+ASM,American Samoa,WPR,bronze_layer/country_vals.json
+ATG,Antigua and Barbuda,AMR,bronze_layer/country_vals.json
+AUS,Australia,WPR,bronze_layer/country_vals.json
+AUT,Austria,EUR,bronze_layer/country_vals.json
+AZE,Azerbaijan,EUR,bronze_layer/country_vals.json
+BDI,Burundi,AFR,bronze_layer/country_vals.json
+BEL,Belgium,EUR,bronze_layer/country_vals.json
+BEN,Benin,AFR,bronze_layer/country_vals.json
+BES,"Bonaire, Saint Eustatius and Saba",AMR,bronze_layer/country_vals.json
+BFA,Burkina Faso,AFR,bronze_layer/country_vals.json
+BGD,Bangladesh,SEAR,bronze_layer/country_vals.json
+BGR,Bulgaria,EUR,bronze_layer/country_vals.json
+BHR,Bahrain,EMR,bronze_layer/country_vals.json
+BHS,Bahamas,AMR,bronze_layer/country_vals.json
+BIH,Bosnia and Herzegovina,EUR,bronze_layer/country_vals.json
+BLR,Belarus,EUR,bronze_layer/country_vals.json
+BLZ,Belize,AMR,bronze_layer/country_vals.json
+BMU,Bermuda,AMR,bronze_layer/country_vals.json
+BOL,Bolivia (Plurinational State of),AMR,bronze_layer/country_vals.json
+BRA,Brazil,AMR,bronze_layer/country_vals.json
+BRB,Barbados,AMR,bronze_layer/country_vals.json
+BRN,Brunei Darussalam,WPR,bronze_layer/country_vals.json
+BTN,Bhutan,SEAR,bronze_layer/country_vals.json
+BWA,Botswana,AFR,bronze_layer/country_vals.json
+CAF,Central African Republic,AFR,bronze_layer/country_vals.json
+CAN,Canada,AMR,bronze_layer/country_vals.json
+CHE,Switzerland,EUR,bronze_layer/country_vals.json
+CHI,Channel islands,,bronze_layer/country_vals.json
+CHL,Chile,AMR,bronze_layer/country_vals.json
+CHN,China,WPR,bronze_layer/country_vals.json
+CIV,Cote d'Ivoire,AFR,bronze_layer/country_vals.json
+CMR,Cameroon,AFR,bronze_layer/country_vals.json
+COD,Democratic Republic of the Congo,AFR,bronze_layer/country_vals.json
+COG,Congo,AFR,bronze_layer/country_vals.json
+COK,Cook Islands,WPR,bronze_layer/country_vals.json
+COL,Colombia,AMR,bronze_layer/country_vals.json
+COM,Comoros,AFR,bronze_layer/country_vals.json
+CPV,Cabo Verde,AFR,bronze_layer/country_vals.json
+CRI,Costa Rica,AMR,bronze_layer/country_vals.json
+CUB,Cuba,AMR,bronze_layer/country_vals.json
+CUW,Curaçao,AMR,bronze_layer/country_vals.json
+CYM,Cayman Islands,AMR,bronze_layer/country_vals.json
+CYP,Cyprus,EUR,bronze_layer/country_vals.json
+CZE,Czechia,EUR,bronze_layer/country_vals.json
+DEU,Germany,EUR,bronze_layer/country_vals.json
+DJI,Djibouti,EMR,bronze_layer/country_vals.json
+DMA,Dominica,AMR,bronze_layer/country_vals.json
+DNK,Denmark,EUR,bronze_layer/country_vals.json
+DOM,Dominican Republic,AMR,bronze_layer/country_vals.json
+DZA,Algeria,AFR,bronze_layer/country_vals.json
+ECU,Ecuador,AMR,bronze_layer/country_vals.json
+EGY,Egypt,EMR,bronze_layer/country_vals.json
+ERI,Eritrea,AFR,bronze_layer/country_vals.json
+ESP,Spain,EUR,bronze_layer/country_vals.json
+EST,Estonia,EUR,bronze_layer/country_vals.json
+ETH,Ethiopia,AFR,bronze_layer/country_vals.json
+FIN,Finland,EUR,bronze_layer/country_vals.json
+FJI,Fiji,WPR,bronze_layer/country_vals.json
+FLK,Falkland Islands (Malvinas),AMR,bronze_layer/country_vals.json
+FRA,France,EUR,bronze_layer/country_vals.json
+FRO,Faroe Islands,EUR,bronze_layer/country_vals.json
+FSM,Micronesia (Federated States of),WPR,bronze_layer/country_vals.json
+GAB,Gabon,AFR,bronze_layer/country_vals.json
+GBR,United Kingdom of Great Britain and Northern Ireland,EUR,bronze_layer/country_vals.json
+GEO,Georgia,EUR,bronze_layer/country_vals.json
+GHA,Ghana,AFR,bronze_layer/country_vals.json
+GIB,Gibraltar,EUR,bronze_layer/country_vals.json
+GIN,Guinea,AFR,bronze_layer/country_vals.json
+GLP,Guadeloupe,AMR,bronze_layer/country_vals.json
+GMB,Gambia,AFR,bronze_layer/country_vals.json
+GNB,Guinea-Bissau,AFR,bronze_layer/country_vals.json
+GNQ,Equatorial Guinea,AFR,bronze_layer/country_vals.json
+GRC,Greece,EUR,bronze_layer/country_vals.json
+GRD,Grenada,AMR,bronze_layer/country_vals.json
+GRL,Greenland,EUR,bronze_layer/country_vals.json
+GTM,Guatemala,AMR,bronze_layer/country_vals.json
+GUF,French Guiana,AMR,bronze_layer/country_vals.json
+GUM,Guam,WPR,bronze_layer/country_vals.json
+GUY,Guyana,AMR,bronze_layer/country_vals.json
+HKG,"China, Hong Kong Special Administrative Region",,bronze_layer/country_vals.json
+HND,Honduras,AMR,bronze_layer/country_vals.json
+HRV,Croatia,EUR,bronze_layer/country_vals.json
+HTI,Haiti,AMR,bronze_layer/country_vals.json
+HUN,Hungary,EUR,bronze_layer/country_vals.json
+IDN,Indonesia,WPR,bronze_layer/country_vals.json
+IMN,Isle of Man,EUR,bronze_layer/country_vals.json
+IND,India,SEAR,bronze_layer/country_vals.json
+IRL,Ireland,EUR,bronze_layer/country_vals.json
+IRN,Iran (Islamic Republic of),EMR,bronze_layer/country_vals.json
+IRQ,Iraq,EMR,bronze_layer/country_vals.json
+ISL,Iceland,EUR,bronze_layer/country_vals.json
+ISR,Israel,EUR,bronze_layer/country_vals.json
+ITA,Italy,EUR,bronze_layer/country_vals.json
+JAM,Jamaica,AMR,bronze_layer/country_vals.json
+JOR,Jordan,EMR,bronze_layer/country_vals.json
+JPN,Japan,WPR,bronze_layer/country_vals.json
+KAZ,Kazakhstan,EUR,bronze_layer/country_vals.json
+KEN,Kenya,AFR,bronze_layer/country_vals.json
+KGZ,Kyrgyzstan,EUR,bronze_layer/country_vals.json
+KHM,Cambodia,WPR,bronze_layer/country_vals.json
+KIR,Kiribati,WPR,bronze_layer/country_vals.json
+KNA,Saint Kitts and Nevis,AMR,bronze_layer/country_vals.json
+KOR,Republic of Korea,WPR,bronze_layer/country_vals.json
+KWT,Kuwait,EMR,bronze_layer/country_vals.json
+LAO,Lao People's Democratic Republic,WPR,bronze_layer/country_vals.json
+LBN,Lebanon,EMR,bronze_layer/country_vals.json
+LBR,Liberia,AFR,bronze_layer/country_vals.json
+LBY,Libya,EMR,bronze_layer/country_vals.json
+LCA,Saint Lucia,AMR,bronze_layer/country_vals.json
+LIE,Liechtenstein,EUR,bronze_layer/country_vals.json
+LKA,Sri Lanka,SEAR,bronze_layer/country_vals.json
+LSO,Lesotho,AFR,bronze_layer/country_vals.json
+LTU,Lithuania,EUR,bronze_layer/country_vals.json
+LUX,Luxembourg,EUR,bronze_layer/country_vals.json
+LVA,Latvia,EUR,bronze_layer/country_vals.json
+MAC,"China, Macao Special Administrative Region",,bronze_layer/country_vals.json
+MAR,Morocco,EMR,bronze_layer/country_vals.json
+MCO,Monaco,EUR,bronze_layer/country_vals.json
+MDA,Republic of Moldova,EUR,bronze_layer/country_vals.json
+MDG,Madagascar,AFR,bronze_layer/country_vals.json
+MDV,Maldives,SEAR,bronze_layer/country_vals.json
+ME1,The former state union Serbia and Montenegro,,bronze_layer/country_vals.json
+MEX,Mexico,AMR,bronze_layer/country_vals.json
+MHL,Marshall Islands,WPR,bronze_layer/country_vals.json
+MKD,North Macedonia,EUR,bronze_layer/country_vals.json
+MLI,Mali,AFR,bronze_layer/country_vals.json
+MLT,Malta,EUR,bronze_layer/country_vals.json
+MMR,Myanmar,SEAR,bronze_layer/country_vals.json
+MNE,Montenegro,EUR,bronze_layer/country_vals.json
+MNG,Mongolia,WPR,bronze_layer/country_vals.json
+MNP,Northern Mariana Islands,WPR,bronze_layer/country_vals.json
+MOZ,Mozambique,AFR,bronze_layer/country_vals.json
+MRT,Mauritania,AFR,bronze_layer/country_vals.json
+MSR,Montserrat,AMR,bronze_layer/country_vals.json
+MTQ,Martinique,AMR,bronze_layer/country_vals.json
+MUS,Mauritius,AFR,bronze_layer/country_vals.json
+MWI,Malawi,AFR,bronze_layer/country_vals.json
+MYS,Malaysia,WPR,bronze_layer/country_vals.json
+MYT,Mayotte,AFR,bronze_layer/country_vals.json
+NAM,Namibia,AFR,bronze_layer/country_vals.json
+NCL,New Caledonia,WPR,bronze_layer/country_vals.json
+NER,Niger,AFR,bronze_layer/country_vals.json
+NGA,Nigeria,AFR,bronze_layer/country_vals.json
+NIC,Nicaragua,AMR,bronze_layer/country_vals.json
+NIU,Niue,WPR,bronze_layer/country_vals.json
+NLD,Netherlands (Kingdom of the),EUR,bronze_layer/country_vals.json
+NOR,Norway,EUR,bronze_layer/country_vals.json
+NPL,Nepal,SEAR,bronze_layer/country_vals.json
+NRU,Naoero,WPR,bronze_layer/country_vals.json
+NZL,New Zealand,WPR,bronze_layer/country_vals.json
+OMN,Oman,EMR,bronze_layer/country_vals.json
+PAK,Pakistan,EMR,bronze_layer/country_vals.json
+PAN,Panama,AMR,bronze_layer/country_vals.json
+PER,Peru,AMR,bronze_layer/country_vals.json
+PHL,Philippines,WPR,bronze_layer/country_vals.json
+PLW,Palau,WPR,bronze_layer/country_vals.json
+PNG,Papua New Guinea,WPR,bronze_layer/country_vals.json
+POL,Poland,EUR,bronze_layer/country_vals.json
+PRI,Puerto Rico,AMR,bronze_layer/country_vals.json
+PRK,Democratic People's Republic of Korea,SEAR,bronze_layer/country_vals.json
+PRS,Pristina,,bronze_layer/country_vals.json
+PRT,Portugal,EUR,bronze_layer/country_vals.json
+PRY,Paraguay,AMR,bronze_layer/country_vals.json
+PSE,"occupied Palestinian territory, including east Jerusalem",EMR,bronze_layer/country_vals.json
+PYF,French Polynesia,WPR,bronze_layer/country_vals.json
+QAT,Qatar,EMR,bronze_layer/country_vals.json
+REU,Reunion,AFR,bronze_layer/country_vals.json
+ROU,Romania,EUR,bronze_layer/country_vals.json
+RUS,Russian Federation,EUR,bronze_layer/country_vals.json
+RWA,Rwanda,AFR,bronze_layer/country_vals.json
+SAU,Saudi Arabia,EMR,bronze_layer/country_vals.json
+SDN,Sudan,EMR,bronze_layer/country_vals.json
+SDN736,Sudan (former),EMR,bronze_layer/country_vals.json
+SEN,Senegal,AFR,bronze_layer/country_vals.json
+SGP,Singapore,WPR,bronze_layer/country_vals.json
+SHN,"St Helena, Ascension and Tristan da Cunha",AFR,bronze_layer/country_vals.json
+SLB,Solomon Islands,WPR,bronze_layer/country_vals.json
+SLE,Sierra Leone,AFR,bronze_layer/country_vals.json
+SLV,El Salvador,AMR,bronze_layer/country_vals.json
+SMR,San Marino,EUR,bronze_layer/country_vals.json
+SOM,Somalia,EMR,bronze_layer/country_vals.json
+SPM,Saint Pierre and Miquelon,AMR,bronze_layer/country_vals.json
+SRB,Serbia,EUR,bronze_layer/country_vals.json
+SSD,South Sudan,AFR,bronze_layer/country_vals.json
+STP,Sao Tome and Principe,AFR,bronze_layer/country_vals.json
+SUR,Suriname,AMR,bronze_layer/country_vals.json
+SVK,Slovakia,EUR,bronze_layer/country_vals.json
+SVN,Slovenia,EUR,bronze_layer/country_vals.json
+SWE,Sweden,EUR,bronze_layer/country_vals.json
+SWZ,Eswatini,AFR,bronze_layer/country_vals.json
+SXM,Sint Maarten (Dutch part),AMR,bronze_layer/country_vals.json
+SYC,Seychelles,AFR,bronze_layer/country_vals.json
+SYR,Syrian Arab Republic,EMR,bronze_layer/country_vals.json
+TCA,Turks and Caicos Islands,AMR,bronze_layer/country_vals.json
+TCD,Chad,AFR,bronze_layer/country_vals.json
+TGO,Togo,AFR,bronze_layer/country_vals.json
+THA,Thailand,SEAR,bronze_layer/country_vals.json
+TJK,Tajikistan,EUR,bronze_layer/country_vals.json
+TKL,Tokelau,WPR,bronze_layer/country_vals.json
+TKM,Turkmenistan,EUR,bronze_layer/country_vals.json
+TLS,Timor-Leste,SEAR,bronze_layer/country_vals.json
+TON,Tonga,WPR,bronze_layer/country_vals.json
+TTO,Trinidad and Tobago,AMR,bronze_layer/country_vals.json
+TUN,Tunisia,EMR,bronze_layer/country_vals.json
+TUR,Türkiye,EUR,bronze_layer/country_vals.json
+TUV,Tuvalu,WPR,bronze_layer/country_vals.json
+TZA,United Republic of Tanzania,AFR,bronze_layer/country_vals.json
+UGA,Uganda,AFR,bronze_layer/country_vals.json
+UKR,Ukraine,EUR,bronze_layer/country_vals.json
+URY,Uruguay,AMR,bronze_layer/country_vals.json
+USA,United States of America,AMR,bronze_layer/country_vals.json
+UZB,Uzbekistan,EUR,bronze_layer/country_vals.json
+VCT,Saint Vincent and the Grenadines,AMR,bronze_layer/country_vals.json
+VEN,Venezuela (Bolivarian Republic of),AMR,bronze_layer/country_vals.json
+VGB,British Virgin Islands,AMR,bronze_layer/country_vals.json
+VIR,Virgin Islands (USA),AMR,bronze_layer/country_vals.json
+VNM,Viet Nam,WPR,bronze_layer/country_vals.json
+VUT,Vanuatu,WPR,bronze_layer/country_vals.json
+WLF,Wallis and Futuna Islands,WPR,bronze_layer/country_vals.json
+WSM,Samoa,WPR,bronze_layer/country_vals.json
+XKX,Kosovo (in accordance with UN Security Council resolution 1244 (1999)),,bronze_layer/country_vals.json
+YEM,Yemen,EMR,bronze_layer/country_vals.json
+ZAF,South Africa,AFR,bronze_layer/country_vals.json
+ZMB,Zambia,AFR,bronze_layer/country_vals.json
+ZWE,Zimbabwe,AFR,bronze_layer/country_vals.json

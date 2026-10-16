@@ -41,7 +41,7 @@ UNUSED_DIMENSIONS = ["Dim2Type", "Dim2", "Dim3Type", "Dim3", "DataSourceDimType"
 OBSERVATION_COLUMNS = [
     "Id", "IndicatorCode", "SpatialDimType", "SpatialDim", "TimeDimType", "TimeDim",
     "Dim1Type", "Dim1", *UNUSED_DIMENSIONS, "NumericValue", "Low", "High", "Value",
-    "Date", "Comments", "TimeDimensionValue", "TimeDimensionBegin", "TimeDimensionEnd",
+    "Date", "TimeDimensionValue", "TimeDimensionBegin", "TimeDimensionEnd",
     "ParentLocationCode", "ParentLocation",
 ]
 REFERENCE_COLUMNS = ["Code", "Title", "Dimension", "ParentDimension", "ParentCode", "ParentTitle"]
@@ -59,8 +59,6 @@ OBSERVATION_SCHEMA = pa.schema([
     pa.field("period_end", pa.date32(), nullable=False),
     pa.field("source_observation_id", pa.int64(), nullable=False),
     pa.field("source_date", pa.string()),
-    pa.field("comments", pa.string()),
-    pa.field("source_file", pa.string(), nullable=False),
 ])
 
 
@@ -200,7 +198,7 @@ def build_observations(bronze_dir, references):
         filename = metadata["filename"]
         frame = read_collection(bronze_dir / filename, OBSERVATION_COLUMNS)
         strings(frame, ["IndicatorCode", "SpatialDimType", "SpatialDim", "TimeDimType", "Dim1Type", "Dim1", "TimeDimensionValue", "TimeDimensionBegin", "TimeDimensionEnd"], filename)
-        strings(frame, ["Value", "Date", "Comments", "ParentLocationCode", "ParentLocation"], filename, nullable=True)
+        strings(frame, ["Value", "Date", "ParentLocationCode", "ParentLocation"], filename, nullable=True)
         require(frame["IndicatorCode"].eq(code).all(), f"{filename}: expected indicator {code}")
         require(frame["TimeDimType"].eq("YEAR").all(), f"{filename}: unsupported time dimension")
         require(frame["Dim1Type"].eq("SEX").all(), f"{filename}: unsupported first dimension")
@@ -221,14 +219,13 @@ def build_observations(bronze_dir, references):
             present = frame[lower].notna() & frame[upper].notna()
             require(frame.loc[present, lower].le(frame.loc[present, upper]).all(),
                     f"{filename}: invalid uncertainty bounds")
-        frame["source_file"] = source_path(bronze_dir / filename)
         input_count += len(frame)
         frames.append(frame)
 
     observations = pd.concat(frames, ignore_index=True).rename(columns={
         "IndicatorCode": "indicator_code", "SpatialDimType": "location_type", "SpatialDim": "location_code",
         "TimeDim": "year", "Dim1": "sex_code", "NumericValue": "estimate", "Low": "lower_bound", "High": "upper_bound",
-        "Value": "display_value", "Id": "source_observation_id", "Date": "source_date", "Comments": "comments",
+        "Value": "display_value", "Id": "source_observation_id", "Date": "source_date",
     })
     unique(observations, GRAIN, "health observations")
     members(observations["indicator_code"], references["ref_indicators"]["indicator_code"], "indicator")

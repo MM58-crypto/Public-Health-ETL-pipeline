@@ -1,0 +1,44 @@
+region_code,region_name,source_file
+AFR,Africa,bronze_layer/region_vals.json
+AMR,Americas,bronze_layer/region_vals.json
+EMR,Eastern Mediterranean,bronze_layer/region_vals.json
+EUR,Europe,bronze_layer/region_vals.json
+GBD_REG14_AFRD,"Africa region, stratum D (AFR D)",bronze_layer/region_vals.json
+GBD_REG14_AFRE,"Africa region, stratum E(AFR E)",bronze_layer/region_vals.json
+GBD_REG14_AMRA,"Americas region, stratum A (AMR A)",bronze_layer/region_vals.json
+GBD_REG14_AMRB,"Americas region, stratum B (AMR B)",bronze_layer/region_vals.json
+GBD_REG14_AMRD,"Americas region, stratum D (AMR D)",bronze_layer/region_vals.json
+GBD_REG14_EMRB,"Eastern Mediterranean region, stratum B (EMR B)",bronze_layer/region_vals.json
+GBD_REG14_EMRD,"Eastern Mediterranean region, stratum D (EMR D)",bronze_layer/region_vals.json
+GBD_REG14_EURA,"Europe region, stratum A (EUR A)",bronze_layer/region_vals.json
+GBD_REG14_EURB,"Europe region, stratum B (EUR B)",bronze_layer/region_vals.json
+GBD_REG14_EURC,"Europe region, stratum C (EUR C)",bronze_layer/region_vals.json
+GBD_REG14_SEARB,"South East Asia region, stratum B (SEAR B)",bronze_layer/region_vals.json
+GBD_REG14_SEARD,"South East Asia region, stratum D (SEAR D)",bronze_layer/region_vals.json
+GBD_REG14_WPRA,"Western Pacific region, stratum A (WPR A)",bronze_layer/region_vals.json
+GBD_REG14_WPRB,"Western Pacific region, stratum B (WPR B)",bronze_layer/region_vals.json
+NC,Not classified,bronze_layer/region_vals.json
+NOTSPEC,Not specified,bronze_layer/region_vals.json
+OECD_HII_AMR,"Americas, high-income OECD",bronze_layer/region_vals.json
+OECD_HII_EUR,"Europe, high-income OECD",bronze_layer/region_vals.json
+OECD_HII_WPR,"Western Pacific , high-income OECD",bronze_layer/region_vals.json
+OECD_NON_AFR,Africa (non-OECD),bronze_layer/region_vals.json
+OECD_NON_AMR,"Americas, non-OECD",bronze_layer/region_vals.json
+OECD_NON_EMR,Eastern Mediterranean (non-OECD),bronze_layer/region_vals.json
+OECD_NON_EUR,"Europe, non-OECD",bronze_layer/region_vals.json
+OECD_NON_SEAR,South-East Asia (non-OECD),bronze_layer/region_vals.json
+OECD_NON_WPR,"Western Pacific, non-OECD",bronze_layer/region_vals.json
+SEAR,South-East Asia,bronze_layer/region_vals.json
+SEAR_W_IDN,South-East Asia with Indonesia,bronze_layer/region_vals.json
+WHO_HI_GLOBAL,WHO High income countries of the world,bronze_layer/region_vals.json
+WHO_LMI_AFR,Low-and-middle-income countries of the African Region,bronze_layer/region_vals.json
+WHO_LMI_AMR,Low-and-middle-income countries of the Americas,bronze_layer/region_vals.json
+WHO_LMI_EMR,Low-and-middle-income countries of the Eastern Mediterranean Region,bronze_layer/region_vals.json
+WHO_LMI_EUR,Low-and-middle-income countries of the European Region,bronze_layer/region_vals.json
+WHO_LMI_HIC,High income countries,bronze_layer/region_vals.json
+WHO_LMI_SEAR,Low-and-middle-income countries of the South-East Asia Region,bronze_layer/region_vals.json
+WHO_LMI_WORLD,Global (WHO LMI),bronze_layer/region_vals.json
+WHO_LMI_WPR,Low-and-middle-income countries of the Western Pacific Region,bronze_layer/region_vals.json
+WHO_NONMEM,WHO Non Members,bronze_layer/region_vals.json
+WPR,Western Pacific,bronze_layer/region_vals.json
+WPR_WO_IDN,Western Pacific without Indonesia,bronze_layer/region_vals.json

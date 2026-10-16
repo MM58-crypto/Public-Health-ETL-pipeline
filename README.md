@@ -111,12 +111,10 @@ Types below are enforced in the Parquet/Arrow schema. Numeric conversions use nu
 | `period_end` | date32 | No | Local calendar date from `TimeDimensionEnd`; inclusive source end date |
 | `source_observation_id` | int64 | No | `Id`, retained for traceability; not a durable business key |
 | `source_date` | string | Yes | Preserve the source ISO-8601 `Date` including its offset; its meaning is not confirmed |
-| `comments` | string | Yes | `Comments`; currently null |
-| `source_file` | string | No | Project-relative bronze input path |
 
-Validate `TimeDimensionValue` and both period dates against `year`. Validate source parent-location fields against country references before omitting the redundant parent labels from the observations table. Preserve populated comments. Retain the full original representation in bronze.
+Validate `TimeDimensionValue` and both period dates against `year`. Validate source parent-location fields against country references before omitting the redundant parent labels from the observations table. Observation outputs omit `comments` and `source_file`; source comments remain in the unchanged bronze JSON and are not required or validated by silver.
 
-`source_date` is not an ingestion timestamp, and a file path does not identify an immutable snapshot while bronze files can be overwritten. Historical ingestion lineage is outside this initial layout.
+`source_date` is not an ingestion timestamp. Reference-table source paths do not identify immutable snapshots while bronze files can be overwritten. Historical ingestion lineage is outside this initial layout.
 
 ### Reference tables
 
@@ -174,7 +172,7 @@ Custom input/output directories are supported:
 python silver.py --bronze-dir bronze_layer --silver-dir silver_layer
 ```
 
-Input paths recorded in `source_file` are relative to the project root, including when a custom input directory is used. Importing `silver.py` does not run the pipeline.
+Reference-table input paths recorded in `source_file` are relative to the project root, including when a custom input directory is used. Importing `silver.py` does not run the pipeline.
 
 Run ingestion and silver regression checks with:
 

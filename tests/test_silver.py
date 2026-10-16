@@ -28,7 +28,7 @@ def observation(code, identifier=1, location_type="COUNTRY", location="SAU", yea
         "Dim2Type": None, "Dim2": None, "Dim3Type": None, "Dim3": None,
         "DataSourceDimType": None, "DataSourceDim": None,
         "NumericValue": estimate, "Low": None, "High": None,
-        "Value": "source display", "Date": "2026-10-01T16:11:13.08+02:00", "Comments": None,
+        "Value": "source display", "Date": "2026-10-01T16:11:13.08+02:00",
         "TimeDimensionValue": str(year),
         "TimeDimensionBegin": f"{year}-01-01T00:00:00+14:00",
         "TimeDimensionEnd": f"{year}-12-31T23:59:59-12:00",
@@ -67,7 +67,7 @@ class SilverTests(unittest.TestCase):
             "life_expectancy_at_birth": [observation("WHOSIS_000001", year=2023, estimate=75.2)],
             "hale_at_birth": [observation("WHOSIS_000002", year=2023, estimate=65.1)],
         }
-        self.rows["life_expectancy_at_birth"][0].update(Low=72.0, High=78.0, Comments="Retain this annotation")
+        self.rows["life_expectancy_at_birth"][0].update(Low=72.0, High=78.0, Comments="Bronze-only annotation")
         self.save_inputs()
 
     def save_inputs(self):
@@ -91,7 +91,8 @@ class SilverTests(unittest.TestCase):
         self.assertEqual(life["period_end"], date(2023, 12, 31))
         self.assertEqual(life["estimate"], 75.2)
         self.assertEqual(life["display_value"], "source display")
-        self.assertEqual(life["comments"], "Retain this annotation")
+        self.assertNotIn("comments", table.column_names)
+        self.assertNotIn("source_file", table.column_names)
         self.assertEqual(life["source_date"], "2026-10-01T16:11:13.08+02:00")
         self.assertEqual(table.schema.field("year").type, pa.int16())
         self.assertEqual(table.schema.field("period_start").type, pa.date32())

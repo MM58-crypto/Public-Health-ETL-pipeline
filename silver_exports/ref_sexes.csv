@@ -1,0 +1,5 @@
+sex_code,sex_name,source_file
+SEX_BTSX,Both sexes,bronze_layer/sex_vals.json
+SEX_FMLE,Female,bronze_layer/sex_vals.json
+SEX_MLE,Male,bronze_layer/sex_vals.json
+SEX_NOA,Not applicable,bronze_layer/sex_vals.json

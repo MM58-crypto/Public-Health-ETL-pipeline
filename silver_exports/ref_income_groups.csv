@@ -1,0 +1,9 @@
+income_group_code,income_group_name,source_file
+NA,NA,bronze_layer/income_group_vals.json
+NOA,Not included,bronze_layer/income_group_vals.json
+WB_HI,High-income,bronze_layer/income_group_vals.json
+WB_LI,Low-income,bronze_layer/income_group_vals.json
+WB_LIMI,Low- and middle-income,bronze_layer/income_group_vals.json
+WB_LMI,Lower-middle-income,bronze_layer/income_group_vals.json
+WB_MI,Middle-income,bronze_layer/income_group_vals.json
+WB_UMI,Upper-middle-income,bronze_layer/income_group_vals.json
