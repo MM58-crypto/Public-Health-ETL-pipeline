@@ -1,4 +1,4 @@
-"""Build country-level gold analytical marts from validated silver Parquet tables."""
+"""Build a country-level gold star schema from validated silver Parquet tables."""
 
 import argparse
 import logging
@@ -30,6 +30,15 @@ VACCINATION_METRICS = {
 }
 HEALTH_GRAIN = ["country_code", "year", "sex_code"]
 ANNUAL_GRAIN = ["country_code", "year"]
+TABLE_KEYS = {
+    "dim_country": ["country_code"],
+    "dim_year": ["year"],
+    "dim_sex": ["sex_code"],
+    "fact_country_health": HEALTH_GRAIN,
+    "fact_country_disease_vaccination": ANNUAL_GRAIN,
+}
+SAMPLE_REGION = "EMR"
+SAMPLE_COUNTRIES = ("EGY", "JOR", "MAR", "SAU", "TUN")
 
 
 def read_countries(silver_dir):
@@ -60,28 +69,22 @@ def country_metrics(observations, metrics, grain, countries):
     frame = observations.pivot(index=grain, columns="indicator_code", values="estimate")
     frame = frame.reindex(columns=list(metrics)).rename(columns=metrics).reset_index()
     frame.columns.name = None
-    return frame.merge(countries, on="country_code", how="left", validate="many_to_one")
+    return frame
 
 
-def mart_schema(metrics, with_sex=False):
+def fact_schema(metrics, with_sex=False):
     fields = [
         pa.field("country_code", pa.string(), nullable=False),
-        pa.field("country_name", pa.string(), nullable=False),
-        pa.field("region_code", pa.string()),
-        pa.field("region_name", pa.string()),
         pa.field("year", pa.int16(), nullable=False),
     ]
     if with_sex:
-        fields.extend([
-            pa.field("sex_code", pa.string(), nullable=False),
-            pa.field("sex_name", pa.string(), nullable=False),
-        ])
+        fields.append(pa.field("sex_code", pa.string(), nullable=False))
     fields.extend(pa.field(name, pa.float64()) for name in metrics)
     return pa.schema(fields)
 
 
 def build_gold(silver_dir=Path("silver_layer"), gold_dir=Path("gold_layer")):
-    """Preserve country key unions and nulls; stage both marts before publication."""
+    """Preserve country key unions and nulls; stage all five tables before publication."""
     silver_dir, gold_dir = Path(silver_dir), Path(gold_dir)
     countries = read_countries(silver_dir)
     sexes = pd.read_parquet(silver_dir / "ref_sexes.parquet", columns=["sex_code", "sex_name"])
@@ -92,7 +95,6 @@ def build_gold(silver_dir=Path("silver_layer"), gold_dir=Path("gold_layer")):
         HEALTH_METRICS, HEALTH_GRAIN, countries,
     )
     members(health["sex_code"], sexes["sex_code"], "health sex")
-    health = health.merge(sexes, on="sex_code", how="left", validate="many_to_one")
     health["life_expectancy_hale_gap_years"] = health["life_expectancy_years"] - health["healthy_life_expectancy_years"]
 
     annual_metrics = DISEASE_METRICS | VACCINATION_METRICS
@@ -101,13 +103,30 @@ def build_gold(silver_dir=Path("silver_layer"), gold_dir=Path("gold_layer")):
         read_observations(silver_dir, "vaccination_coverage", VACCINATION_METRICS, ANNUAL_GRAIN),
     ], ignore_index=True), annual_metrics, ANNUAL_GRAIN, countries)
 
+    years = pd.concat([health[["year"]], annual[["year"]]], ignore_index=True).drop_duplicates()
     tables = {}
-    for name, frame, grain, schema in [
-        ("country_health", health, HEALTH_GRAIN,
-         mart_schema([*HEALTH_METRICS.values(), "life_expectancy_hale_gap_years"], with_sex=True)),
-        ("country_disease_vaccination", annual, ANNUAL_GRAIN, mart_schema(annual_metrics.values())),
+    for name, frame, schema in [
+        ("dim_country", countries, pa.schema([
+            pa.field("country_code", pa.string(), nullable=False),
+            pa.field("country_name", pa.string(), nullable=False),
+            pa.field("region_code", pa.string()),
+            pa.field("region_name", pa.string()),
+        ])),
+        ("dim_year", years, pa.schema([pa.field("year", pa.int16(), nullable=False)])),
+        ("dim_sex", sexes, pa.schema([
+            pa.field("sex_code", pa.string(), nullable=False),
+            pa.field("sex_name", pa.string(), nullable=False),
+        ])),
+        ("fact_country_health", health,
+         fact_schema([*HEALTH_METRICS.values(), "life_expectancy_hale_gap_years"], with_sex=True)),
+        ("fact_country_disease_vaccination", annual, fact_schema(annual_metrics.values())),
     ]:
-        tables[name] = arrow_table(frame[schema.names].sort_values(grain).reset_index(drop=True), schema, name)
+        unique(frame, TABLE_KEYS[name], name)
+        if name.startswith("fact_"):
+            members(frame["year"], years["year"], f"{name} year")
+        tables[name] = arrow_table(
+            frame[schema.names].sort_values(TABLE_KEYS[name]).reset_index(drop=True), schema, name,
+        )
 
     gold_dir.mkdir(parents=True, exist_ok=True)
     # Match silver publication: atomic per file, not a transaction across the set.
@@ -122,14 +141,62 @@ def build_gold(silver_dir=Path("silver_layer"), gold_dir=Path("gold_layer")):
     return counts
 
 
+def export_gold(gold_dir=Path("gold_layer"), export_dir=Path("gold_exports")):
+    """Export the full star and a fixed EMR sample without restricting canonical data."""
+    gold_dir, export_dir = Path(gold_dir), Path(export_dir)
+    tables = {name: pd.read_parquet(gold_dir / f"{name}.parquet") for name in TABLE_KEYS}
+    countries = tables["dim_country"]
+    selected = countries.loc[countries["country_code"].isin(SAMPLE_COUNTRIES)]
+    require(set(selected["country_code"]) == set(SAMPLE_COUNTRIES), "EMR sample: missing selected countries")
+    require(selected["region_code"].eq(SAMPLE_REGION).fillna(False).all(),
+            "EMR sample: selected countries must belong to EMR")
+
+    sample = {"dim_country": selected}
+    for name in ("fact_country_health", "fact_country_disease_vaccination"):
+        sample[name] = tables[name].loc[tables[name]["country_code"].isin(SAMPLE_COUNTRIES)]
+    sample_years = pd.concat([
+        sample["fact_country_health"]["year"], sample["fact_country_disease_vaccination"]["year"],
+    ]).unique()
+    sample["dim_year"] = tables["dim_year"].loc[tables["dim_year"]["year"].isin(sample_years)]
+    sample["dim_sex"] = tables["dim_sex"].loc[
+        tables["dim_sex"]["sex_code"].isin(sample["fact_country_health"]["sex_code"])
+    ]
+
+    sample_dir = Path("samples") / SAMPLE_REGION
+    exports = {Path(f"{name}.csv"): frame for name, frame in tables.items()}
+    exports.update({sample_dir / f"{name}.csv": sample[name] for name in TABLE_KEYS})
+    for country in SAMPLE_COUNTRIES:
+        for name in ("fact_country_health", "fact_country_disease_vaccination"):
+            exports[sample_dir / country / f"{name}.csv"] = sample[name].loc[
+                sample[name]["country_code"].eq(country)
+            ]
+
+    export_dir.mkdir(parents=True, exist_ok=True)
+    # Stage all CSVs first; publication is atomic per file, not across the export set.
+    with tempfile.TemporaryDirectory(prefix=".gold-exports-", dir=export_dir) as staging:
+        for relative, frame in exports.items():
+            path = Path(staging) / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            frame.to_csv(path, index=False)
+        for relative in exports:
+            destination = export_dir / relative
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            (Path(staging) / relative).replace(destination)
+    logger.info("Exported %d CSV files to %s", len(exports), export_dir)
+    return {path.as_posix(): len(frame) for path, frame in exports.items()}
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--silver-dir", type=Path, default=Path("silver_layer"))
     parser.add_argument("--gold-dir", type=Path, default=Path("gold_layer"))
+    parser.add_argument("--export-dir", type=Path, help="Also export full CSVs and the fixed five-country EMR sample")
     args = parser.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     try:
         counts = build_gold(args.silver_dir, args.gold_dir)
+        if args.export_dir is not None:
+            export_gold(args.gold_dir, args.export_dir)
     except (OSError, ValueError, TypeError, KeyError, OverflowError, pa.ArrowException) as error:
         logger.error("Gold transformation failed: %s", error)
         return 1

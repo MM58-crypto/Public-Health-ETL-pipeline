@@ -1,0 +1,235 @@
+country_code,country_name,region_code,region_name
+ABW,Aruba,AMR,Americas
+AFG,Afghanistan,EMR,Eastern Mediterranean
+AGO,Angola,AFR,Africa
+AIA,Anguilla,AMR,Americas
+ALB,Albania,EUR,Europe
+AND,Andorra,EUR,Europe
+ARE,United Arab Emirates,EMR,Eastern Mediterranean
+ARG,Argentina,AMR,Americas
+ARM,Armenia,EUR,Europe
+ASM,American Samoa,WPR,Western Pacific
+ATG,Antigua and Barbuda,AMR,Americas
+AUS,Australia,WPR,Western Pacific
+AUT,Austria,EUR,Europe
+AZE,Azerbaijan,EUR,Europe
+BDI,Burundi,AFR,Africa
+BEL,Belgium,EUR,Europe
+BEN,Benin,AFR,Africa
+BES,"Bonaire, Saint Eustatius and Saba",AMR,Americas
+BFA,Burkina Faso,AFR,Africa
+BGD,Bangladesh,SEAR,South-East Asia
+BGR,Bulgaria,EUR,Europe
+BHR,Bahrain,EMR,Eastern Mediterranean
+BHS,Bahamas,AMR,Americas
+BIH,Bosnia and Herzegovina,EUR,Europe
+BLR,Belarus,EUR,Europe
+BLZ,Belize,AMR,Americas
+BMU,Bermuda,AMR,Americas
+BOL,Bolivia (Plurinational State of),AMR,Americas
+BRA,Brazil,AMR,Americas
+BRB,Barbados,AMR,Americas
+BRN,Brunei Darussalam,WPR,Western Pacific
+BTN,Bhutan,SEAR,South-East Asia
+BWA,Botswana,AFR,Africa
+CAF,Central African Republic,AFR,Africa
+CAN,Canada,AMR,Americas
+CHE,Switzerland,EUR,Europe
+CHI,Channel islands,,
+CHL,Chile,AMR,Americas
+CHN,China,WPR,Western Pacific
+CIV,Cote d'Ivoire,AFR,Africa
+CMR,Cameroon,AFR,Africa
+COD,Democratic Republic of the Congo,AFR,Africa
+COG,Congo,AFR,Africa
+COK,Cook Islands,WPR,Western Pacific
+COL,Colombia,AMR,Americas
+COM,Comoros,AFR,Africa
+CPV,Cabo Verde,AFR,Africa
+CRI,Costa Rica,AMR,Americas
+CUB,Cuba,AMR,Americas
+CUW,Curaçao,AMR,Americas
+CYM,Cayman Islands,AMR,Americas
+CYP,Cyprus,EUR,Europe
+CZE,Czechia,EUR,Europe
+DEU,Germany,EUR,Europe
+DJI,Djibouti,EMR,Eastern Mediterranean
+DMA,Dominica,AMR,Americas
+DNK,Denmark,EUR,Europe
+DOM,Dominican Republic,AMR,Americas
+DZA,Algeria,AFR,Africa
+ECU,Ecuador,AMR,Americas
+EGY,Egypt,EMR,Eastern Mediterranean
+ERI,Eritrea,AFR,Africa
+ESP,Spain,EUR,Europe
+EST,Estonia,EUR,Europe
+ETH,Ethiopia,AFR,Africa
+FIN,Finland,EUR,Europe
+FJI,Fiji,WPR,Western Pacific
+FLK,Falkland Islands (Malvinas),AMR,Americas
+FRA,France,EUR,Europe
+FRO,Faroe Islands,EUR,Europe
+FSM,Micronesia (Federated States of),WPR,Western Pacific
+GAB,Gabon,AFR,Africa
+GBR,United Kingdom of Great Britain and Northern Ireland,EUR,Europe
+GEO,Georgia,EUR,Europe
+GHA,Ghana,AFR,Africa
+GIB,Gibraltar,EUR,Europe
+GIN,Guinea,AFR,Africa
+GLP,Guadeloupe,AMR,Americas
+GMB,Gambia,AFR,Africa
+GNB,Guinea-Bissau,AFR,Africa
+GNQ,Equatorial Guinea,AFR,Africa
+GRC,Greece,EUR,Europe
+GRD,Grenada,AMR,Americas
+GRL,Greenland,EUR,Europe
+GTM,Guatemala,AMR,Americas
+GUF,French Guiana,AMR,Americas
+GUM,Guam,WPR,Western Pacific
+GUY,Guyana,AMR,Americas
+HKG,"China, Hong Kong Special Administrative Region",,
+HND,Honduras,AMR,Americas
+HRV,Croatia,EUR,Europe
+HTI,Haiti,AMR,Americas
+HUN,Hungary,EUR,Europe
+IDN,Indonesia,WPR,Western Pacific
+IMN,Isle of Man,EUR,Europe
+IND,India,SEAR,South-East Asia
+IRL,Ireland,EUR,Europe
+IRN,Iran (Islamic Republic of),EMR,Eastern Mediterranean
+IRQ,Iraq,EMR,Eastern Mediterranean
+ISL,Iceland,EUR,Europe
+ISR,Israel,EUR,Europe
+ITA,Italy,EUR,Europe
+JAM,Jamaica,AMR,Americas
+JOR,Jordan,EMR,Eastern Mediterranean
+JPN,Japan,WPR,Western Pacific
+KAZ,Kazakhstan,EUR,Europe
+KEN,Kenya,AFR,Africa
+KGZ,Kyrgyzstan,EUR,Europe
+KHM,Cambodia,WPR,Western Pacific
+KIR,Kiribati,WPR,Western Pacific
+KNA,Saint Kitts and Nevis,AMR,Americas
+KOR,Republic of Korea,WPR,Western Pacific
+KWT,Kuwait,EMR,Eastern Mediterranean
+LAO,Lao People's Democratic Republic,WPR,Western Pacific
+LBN,Lebanon,EMR,Eastern Mediterranean
+LBR,Liberia,AFR,Africa
+LBY,Libya,EMR,Eastern Mediterranean
+LCA,Saint Lucia,AMR,Americas
+LIE,Liechtenstein,EUR,Europe
+LKA,Sri Lanka,SEAR,South-East Asia
+LSO,Lesotho,AFR,Africa
+LTU,Lithuania,EUR,Europe
+LUX,Luxembourg,EUR,Europe
+LVA,Latvia,EUR,Europe
+MAC,"China, Macao Special Administrative Region",,
+MAR,Morocco,EMR,Eastern Mediterranean
+MCO,Monaco,EUR,Europe
+MDA,Republic of Moldova,EUR,Europe
+MDG,Madagascar,AFR,Africa
+MDV,Maldives,SEAR,South-East Asia
+ME1,The former state union Serbia and Montenegro,,
+MEX,Mexico,AMR,Americas
+MHL,Marshall Islands,WPR,Western Pacific
+MKD,North Macedonia,EUR,Europe
+MLI,Mali,AFR,Africa
+MLT,Malta,EUR,Europe
+MMR,Myanmar,SEAR,South-East Asia
+MNE,Montenegro,EUR,Europe
+MNG,Mongolia,WPR,Western Pacific
+MNP,Northern Mariana Islands,WPR,Western Pacific
+MOZ,Mozambique,AFR,Africa
+MRT,Mauritania,AFR,Africa
+MSR,Montserrat,AMR,Americas
+MTQ,Martinique,AMR,Americas
+MUS,Mauritius,AFR,Africa
+MWI,Malawi,AFR,Africa
+MYS,Malaysia,WPR,Western Pacific
+MYT,Mayotte,AFR,Africa
+NAM,Namibia,AFR,Africa
+NCL,New Caledonia,WPR,Western Pacific
+NER,Niger,AFR,Africa
+NGA,Nigeria,AFR,Africa
+NIC,Nicaragua,AMR,Americas
+NIU,Niue,WPR,Western Pacific
+NLD,Netherlands (Kingdom of the),EUR,Europe
+NOR,Norway,EUR,Europe
+NPL,Nepal,SEAR,South-East Asia
+NRU,Naoero,WPR,Western Pacific
+NZL,New Zealand,WPR,Western Pacific
+OMN,Oman,EMR,Eastern Mediterranean
+PAK,Pakistan,EMR,Eastern Mediterranean
+PAN,Panama,AMR,Americas
+PER,Peru,AMR,Americas
+PHL,Philippines,WPR,Western Pacific
+PLW,Palau,WPR,Western Pacific
+PNG,Papua New Guinea,WPR,Western Pacific
+POL,Poland,EUR,Europe
+PRI,Puerto Rico,AMR,Americas
+PRK,Democratic People's Republic of Korea,SEAR,South-East Asia
+PRS,Pristina,,
+PRT,Portugal,EUR,Europe
+PRY,Paraguay,AMR,Americas
+PSE,"occupied Palestinian territory, including east Jerusalem",EMR,Eastern Mediterranean
+PYF,French Polynesia,WPR,Western Pacific
+QAT,Qatar,EMR,Eastern Mediterranean
+REU,Reunion,AFR,Africa
+ROU,Romania,EUR,Europe
+RUS,Russian Federation,EUR,Europe
+RWA,Rwanda,AFR,Africa
+SAU,Saudi Arabia,EMR,Eastern Mediterranean
+SDN,Sudan,EMR,Eastern Mediterranean
+SDN736,Sudan (former),EMR,Eastern Mediterranean
+SEN,Senegal,AFR,Africa
+SGP,Singapore,WPR,Western Pacific
+SHN,"St Helena, Ascension and Tristan da Cunha",AFR,Africa
+SLB,Solomon Islands,WPR,Western Pacific
+SLE,Sierra Leone,AFR,Africa
+SLV,El Salvador,AMR,Americas
+SMR,San Marino,EUR,Europe
+SOM,Somalia,EMR,Eastern Mediterranean
+SPM,Saint Pierre and Miquelon,AMR,Americas
+SRB,Serbia,EUR,Europe
+SSD,South Sudan,AFR,Africa
+STP,Sao Tome and Principe,AFR,Africa
+SUR,Suriname,AMR,Americas
+SVK,Slovakia,EUR,Europe
+SVN,Slovenia,EUR,Europe
+SWE,Sweden,EUR,Europe
+SWZ,Eswatini,AFR,Africa
+SXM,Sint Maarten (Dutch part),AMR,Americas
+SYC,Seychelles,AFR,Africa
+SYR,Syrian Arab Republic,EMR,Eastern Mediterranean
+TCA,Turks and Caicos Islands,AMR,Americas
+TCD,Chad,AFR,Africa
+TGO,Togo,AFR,Africa
+THA,Thailand,SEAR,South-East Asia
+TJK,Tajikistan,EUR,Europe
+TKL,Tokelau,WPR,Western Pacific
+TKM,Turkmenistan,EUR,Europe
+TLS,Timor-Leste,SEAR,South-East Asia
+TON,Tonga,WPR,Western Pacific
+TTO,Trinidad and Tobago,AMR,Americas
+TUN,Tunisia,EMR,Eastern Mediterranean
+TUR,Türkiye,EUR,Europe
+TUV,Tuvalu,WPR,Western Pacific
+TZA,United Republic of Tanzania,AFR,Africa
+UGA,Uganda,AFR,Africa
+UKR,Ukraine,EUR,Europe
+URY,Uruguay,AMR,Americas
+USA,United States of America,AMR,Americas
+UZB,Uzbekistan,EUR,Europe
+VCT,Saint Vincent and the Grenadines,AMR,Americas
+VEN,Venezuela (Bolivarian Republic of),AMR,Americas
+VGB,British Virgin Islands,AMR,Americas
+VIR,Virgin Islands (USA),AMR,Americas
+VNM,Viet Nam,WPR,Western Pacific
+VUT,Vanuatu,WPR,Western Pacific
+WLF,Wallis and Futuna Islands,WPR,Western Pacific
+WSM,Samoa,WPR,Western Pacific
+XKX,Kosovo (in accordance with UN Security Council resolution 1244 (1999)),,
+YEM,Yemen,EMR,Eastern Mediterranean
+ZAF,South Africa,AFR,Africa
+ZMB,Zambia,AFR,Africa
+ZWE,Zimbabwe,AFR,Africa
