@@ -12,15 +12,16 @@ For readers interested in public health, the project offers a path toward cleare
 
 ## What this project aims to explore
 
-The initial focus is **population health and mortality outcomes**, with a proposed selection covering:
+The implemented scope covers **population health, disease burden, and vaccination coverage**:
 
 - Life expectancy at birth
 - Healthy life expectancy at birth
 - Adult mortality
-- Under-five mortality
-- Life expectancy at age 60
+- Tuberculosis and malaria incidence
+- Reported measles cases
+- DTP3, measles first-dose (MCV1), and measles second-dose (MCV2) vaccination coverage
 
-Adult mortality, life expectancy at birth, and healthy life expectancy at birth are included in the prototype and have been profiled. Under-five mortality and life expectancy at age 60 remain proposed additions outside the initial silver scope.
+Under-five mortality and life expectancy at age 60 remain proposed additions outside the implemented silver scope.
 
 Together, these measures could support questions about changes over time, differences between populations, and the gap between total life expectancy and years lived in good health. These are intended analytical directions; published findings and dashboards will come later.
 
@@ -38,7 +39,7 @@ Python and `requests` handle extraction, with JSON used for raw storage. Pandas 
 
 ## What works today
 
-The current `main.py` attempts to retrieve nine datasets:
+The current `main.py` attempts to retrieve fifteen datasets:
 
 | Dataset | GHO API path | Output file |
 | --- | --- | --- |
@@ -51,12 +52,18 @@ The current `main.py` attempts to retrieve nine datasets:
 | Sex reference values | `/api/DIMENSION/SEX/DimensionValues` | `sex_vals.json` |
 | Region reference values | `/api/DIMENSION/REGION/DimensionValues` | `region_vals.json` |
 | Income-group reference values | `/api/DIMENSION/WORLDBANKINCOMEGROUP/DimensionValues` | `income_group_vals.json` |
+| Tuberculosis incidence | `/api/MDG_0000000020` | `tuberculosis_incidence.json` |
+| Estimated malaria incidence | `/api/MALARIA_EST_INCIDENCE` | `malaria_incidence.json` |
+| Reported measles cases | `/api/WHS3_62` | `measles_reported_cases.json` |
+| DTP3 vaccination coverage | `/api/WHS4_100` | `dtp3_coverage.json` |
+| Measles first-dose coverage | `/api/WHS8_110` | `measles_mcv1_coverage.json` |
+| Measles second-dose coverage | `/api/MCV2` | `measles_mcv2_coverage.json` |
 
 Responses are saved under `bronze_layer/` as complete parsed JSON objects, retaining the OData wrapper and source fields. No analytical cleaning is performed during extraction.
 
 The shared `fetch_data()` function uses a 10-second connection timeout and a 60-second read timeout, checks HTTP status before decoding JSON, and requires an OData object containing a `value` list. These timeouts do not impose an overall run deadline. It creates the output directory automatically and reports timeout, HTTP, network, JSON, response-shape, and filesystem failures separately.
 
-Each dataset returns a success/failure result. The script attempts all nine datasets, logs a summary, and exits with code `0` when all succeed or `1` when any fail. Importing `main.py` does not start ingestion.
+Each dataset returns a success/failure result. The script attempts all fifteen datasets, logs a summary, and exits with code `0` when all succeed or `1` when any fail. Importing `main.py` does not start ingestion.
 
 The prototype still overwrites files on successful retrieval. Request and response-validation failures leave existing files untouched, but a write failure can leave a partial file. Retries, atomic file replacement, and ingestion history remain future improvements. Pagination and source-completeness verification are deferred; the retrieved data is sufficient for the project's current analytical scope.
 
@@ -75,6 +82,8 @@ Silver preserves geographic context, distinguishes numeric estimates from format
 ```text
 silver_layer/
   health_observations.parquet
+  disease_observations.parquet
+  vaccination_coverage.parquet
   ref_indicators.parquet
   ref_countries.parquet
   ref_sexes.parquet
@@ -117,13 +126,41 @@ Validate `TimeDimensionValue` and both period dates against `year`. Validate sou
 
 `source_date` is not an ingestion timestamp. Reference-table source paths do not identify immutable snapshots while bronze files can be overwritten. Historical ingestion lineage is outside this initial layout.
 
+### Disease observations and vaccination coverage
+
+Both new tables use the existing observation fields and types **except `sex_code`**, which is absent rather than fabricated. Their grain is:
+
+```text
+indicator_code + location_type + location_code + year
+```
+
+`disease_observations` combines TB incidence, estimated malaria incidence, and reported measles cases. `vaccination_coverage` combines DTP3, MCV1, and MCV2 coverage. Indicator codes distinguish the diseases, vaccine doses, and defined target populations; no extra disease/vaccine lookup tables are needed at this stage.
+
+All six audited endpoints have `TimeDimType == YEAR` and null `Dim1Type`/`Dim1`, `Dim2Type`/`Dim2`, `Dim3Type`/`Dim3`, and data-source dimensions. Silver rejects newly populated breakdowns rather than silently dropping them. It applies the same key, reference, period, bounds, and row-preservation checks as the health table. Disease values must be nonnegative, reported case counts integral, and vaccination values between 0 and 100; missing values remain missing.
+
+The tables preserve countries and source aggregates separately. Their measures are not interchangeable:
+
+| Indicator | Unit / target population |
+| --- | --- |
+| `MDG_0000000020` | New and relapse TB cases per 100,000 population per year |
+| `MALARIA_EST_INCIDENCE` | New malaria cases per 1,000 population **at risk** per year |
+| `WHS3_62` | Reported measles case count, **not an incidence rate** |
+| `WHS4_100` | DTP3 coverage among one-year-olds (%) |
+| `WHS8_110` | MCV1 coverage among one-year-olds (%) |
+| `MCV2` | MCV2 coverage by the locally recommended age (%) |
+
+Do not sum rates or coverage percentages, or average country coverage into regional coverage without appropriate denominator weights. MCV1 and MCV2 in one year need not describe the same cohort; their difference is not automatically a cohort dropout rate. Cross-country associations are not evidence of vaccine effectiveness.
+
+Definition sources: [TB](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/incidence-of-tuberculosis-%28per-100-000-population-per-year%EF%BC%89), [malaria](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/malaria-incidence-%28per-1-000-population-at-risk%29), [reported measles cases](https://immunizationdata.who.int/global/wiise-detail-page/measles-reported-cases-and-incidence), [DTP3 and MCV2](https://www.who.int/data/gho/indicator-metadata-registry/imr-details/7791), and [immunization coverage](https://www.who.int/data/gho/data/themes/topics/indicator-groups/indicator-group-details/GHO/immunization-coverage-estimates).
+
+
 ### Reference tables
 
 All reference code/name columns are non-null strings. Keys must be unique within each table. Every table also includes a non-null string `source_file` identifying its bronze input.
 
 | Table | Columns besides `source_file` | Input and scope |
 | --- | --- | --- |
-| `ref_indicators` | `indicator_code` (key), `indicator_name`, `unit`, `definition`, `definition_url` | Select the three implemented indicators from `indicators.json`; enrich with explicit WHO-verified definitions, units, and documentation URLs |
+| `ref_indicators` | `indicator_code` (key), `indicator_name`, `unit`, `definition`, `definition_url` | Select the nine implemented indicators from `indicators.json`; enrich with explicit definitions, units, and WHO documentation URLs |
 | `ref_countries` | `country_code` (key), `country_name`, `region_code` (nullable) | `country_vals.json`; retain all country-reference entries, including those without region parents |
 | `ref_sexes` | `sex_code` (key), `sex_name` | `sex_vals.json`; retain all returned categories |
 | `ref_regions` | `region_code` (key), `region_name` | `region_vals.json`; retain all returned groupings, not only the six used by current observations |
@@ -147,9 +184,9 @@ Income-group references label existing aggregate observations. They do not assig
 
 Required inputs must contain nonempty collections with the expected fields, including fields whose values may legitimately be null. All transformations, reference checks, and Arrow conversions finish before output publication. Output rows are sorted by their keys for reproducibility.
 
-All six Parquet files are written to a temporary staging directory before any existing file is replaced. Validation or staging-write failures leave previous outputs untouched. Replacements are atomic **per file**, not a transaction across all six files: an interruption during replacement can leave a mixed set. Rerun the full transformation to rebuild it, and do not treat an unsuccessful run as a valid new silver dataset.
+All eight Parquet files are written to a temporary staging directory before any existing file is replaced. Validation or staging-write failures leave previous outputs untouched. Replacements are atomic **per file**, not a transaction across all eight files: an interruption during replacement can leave a mixed set. Rerun the full transformation to rebuild it, and do not treat an unsuccessful run as a valid new silver dataset.
 
-For analysis across all three indicators, use matching geography/year/sex keys; the audited shared period is 2000-2021. Do not remove the additional 2022-2023 LE/HALE rows from silver. Matching keys or source dates alone does not establish methodological comparability between estimation releases.
+For analysis across the three original health indicators, use matching geography/year/sex keys; the audited shared period is 2000-2021. Do not remove the additional 2022-2023 LE/HALE rows from silver. Joining annual disease or vaccination observations to sex-specific health rows repeats the annual measure across sexes; filter to a compatible health population before comparison. Matching keys or source dates alone does not establish methodological comparability between estimation releases.
 
 ## Run the pipeline
 
@@ -163,9 +200,9 @@ python main.py
 python silver.py
 ```
 
-`main.py` requires internet access and refreshes all nine bronze datasets, overwriting their existing files. If the bronze files are already available, skip ingestion and run only `silver.py`; transformation is offline.
+`main.py` requires internet access and refreshes all fifteen bronze datasets, overwriting their existing files. If the bronze files are already available, skip ingestion and run only `silver.py`; transformation is offline.
 
-Silver requires the three observation files plus `indicators.json`, `country_vals.json`, `sex_vals.json`, `region_vals.json`, and `income_group_vals.json`. It exits with code `0` only after all six outputs have been written, or `1` on input, validation, conversion, or filesystem failure. Errors are logged to stderr.
+Silver requires the nine observation files plus `indicators.json`, `country_vals.json`, `sex_vals.json`, `region_vals.json`, and `income_group_vals.json`. It exits with code `0` only after all eight outputs have been written, or `1` on input, validation, conversion, or filesystem failure. Errors are logged to stderr.
 
 Custom input/output directories are supported:
 
@@ -181,9 +218,30 @@ Run ingestion and silver regression checks with:
 python -B -m unittest discover -s tests -v
 ```
 
-The checks use temporary directories; ingestion HTTP responses are simulated, and silver tests exercise real Parquet output. They do not contact WHO or overwrite project datasets. They cover preservation of nulls and aggregates, local-calendar date handling, reference joins, duplicate keys, invalid dimensions and numbers, repeatability, and failure-safe staging.
+The checks use temporary directories; ingestion HTTP responses are simulated, and silver tests exercise real Parquet output. They do not contact WHO or overwrite project datasets. They cover preservation of nulls and aggregates, local-calendar date handling, reference joins, duplicate keys, invalid dimensions and numbers, measure boundaries, repeatability, and failure-safe staging.
 
-The verified project-data run produced 41,160 observations, 3 indicator references, 234 country references, 4 sex references, 43 region references, and 8 income-group references. Counts are observations from that run, not hard-coded expectations or claims about WHO completeness.
+### Verified endpoint profile and outputs
+
+On 2026-10-18, the six new selected endpoints returned HTTP 200 and nonempty collections without continuation links. `SDGMALARIA` and `MALARIA005` returned empty collections; the implemented malaria source is `MALARIA_EST_INCIDENCE`, not an automatic fallback.
+
+| New indicator | Rows | Source years |
+| --- | ---: | --- |
+| TB incidence | 5,177 | 2000–2024 |
+| Estimated malaria incidence | 2,855 | 2000–2024 |
+| Reported measles cases | 11,062 | 1974–2025 |
+| DTP3 coverage | 5,337 | 2000–2025 |
+| MCV1 coverage | 5,337 | 2000–2025 |
+| MCV2 coverage | 5,337 | 2000–2025 |
+
+These are observed source ranges, not a guarantee that every country has every year or that the latest year is final. The measles response contains 1,113 missing estimates; silver preserves them rather than treating them as zero cases. No duplicate annual business keys were found.
+
+The verified build produced 41,160 health observations, 19,094 disease observations, 16,011 vaccination observations, 9 indicator references, 234 country references, 4 sex references, 43 region references, and 8 income-group references. Existing health observations and the four location/sex reference files were byte-identical after rebuilding. All 20 regression tests passed, and actual source values were reconciled against the new Parquet outputs.
+
+All eight Parquet tables have matching CSV viewing snapshots in `silver_exports/`. They were refreshed and checked against their Parquet inputs; running `silver.py` does **not** refresh them automatically. To refresh explicitly:
+
+```bash
+python -c 'from pathlib import Path; import pandas as pd; output = Path("silver_exports"); output.mkdir(exist_ok=True); [pd.read_parquet(path).to_csv(output / (path.stem + ".csv"), index=False) for path in sorted(Path("silver_layer").glob("*.parquet"))]'
+```
 
 ## Next milestones
 

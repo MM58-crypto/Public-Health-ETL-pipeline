@@ -19,21 +19,66 @@ METADATA_BASE = "https://www.who.int/data/gho/data/indicators/indicator-details/
 INDICATORS = {
     "WHOSIS_000004": {
         "filename": "adult_mortality.json",
+        "table": "health_observations",
         "unit": "per_1000",
         "definition": "Probability that a person aged 15 dies before age 60 under the reporting year's mortality conditions, expressed per 1,000.",
         "definition_url": METADATA_BASE + "adult-mortality-rate-%28probability-of-dying-between-15-and-60-years-per-1000-population%29",
     },
     "WHOSIS_000001": {
         "filename": "life_expectancy_at_birth.json",
+        "table": "health_observations",
         "unit": "years",
         "definition": "Expected years of life from birth under the prevailing age- and sex-specific mortality conditions.",
         "definition_url": METADATA_BASE + "life-expectancy",
     },
     "WHOSIS_000002": {
         "filename": "hale_at_birth.json",
+        "table": "health_observations",
         "unit": "years",
         "definition": "Expected equivalent years in full health from birth under the prevailing age- and sex-specific mortality and morbidity conditions.",
         "definition_url": METADATA_BASE + "gho-ghe-hale-healthy-life-expectancy",
+    },
+    "MDG_0000000020": {
+        "filename": "tuberculosis_incidence.json",
+        "table": "disease_observations",
+        "unit": "per_100000_population_per_year",
+        "definition": "Estimated new and relapse tuberculosis cases in a year per 100,000 population, including cases among people living with HIV.",
+        "definition_url": METADATA_BASE + "incidence-of-tuberculosis-%28per-100-000-population-per-year%EF%BC%89",
+    },
+    "MALARIA_EST_INCIDENCE": {
+        "filename": "malaria_incidence.json",
+        "table": "disease_observations",
+        "unit": "per_1000_population_at_risk_per_year",
+        "definition": "Estimated new malaria cases in a year per 1,000 population at risk.",
+        "definition_url": METADATA_BASE + "malaria-incidence-%28per-1-000-population-at-risk%29",
+    },
+    "WHS3_62": {
+        "filename": "measles_reported_cases.json",
+        "table": "disease_observations",
+        "unit": "reported_cases",
+        "definition": "Number of reported measles cases in a year; a case count, not an incidence rate.",
+        "definition_url": "https://immunizationdata.who.int/global/wiise-detail-page/measles-reported-cases-and-incidence",
+    },
+    "WHS4_100": {
+        "filename": "dtp3_coverage.json",
+        "table": "vaccination_coverage",
+        "unit": "percent",
+        "definition": "DTP-containing vaccine third-dose coverage among one-year-olds (%), WHO/UNICEF estimates of national immunization coverage (WUENIC).",
+        "definition_url": "https://www.who.int/data/gho/indicator-metadata-registry/imr-details/7791",
+    },
+    "WHS8_110": {
+        "filename": "measles_mcv1_coverage.json",
+        "table": "vaccination_coverage",
+        "unit": "percent",
+        "definition": "Measles-containing vaccine first-dose coverage among one-year-olds (%), WHO/UNICEF estimates of national immunization coverage (WUENIC).",
+        "definition_url": "https://www.who.int/data/gho/data/themes/topics/indicator-groups/indicator-group-details/GHO/immunization-coverage-estimates",
+    },
+    "MCV2": {
+        "filename": "measles_mcv2_coverage.json",
+        "table": "vaccination_coverage",
+        "unit": "percent",
+        "definition": "Measles-containing vaccine second-dose coverage by the locally recommended age (%), WHO/UNICEF estimates of national immunization coverage (WUENIC).",
+        "definition_url": "https://www.who.int/data/gho/indicator-metadata-registry/imr-details/7791",
     },
 }
 GRAIN = ["indicator_code", "location_type", "location_code", "year", "sex_code"]
@@ -61,6 +106,14 @@ OBSERVATION_SCHEMA = pa.schema([
     pa.field("source_observation_id", pa.int64(), nullable=False),
     pa.field("source_date", pa.string()),
 ])
+ANNUAL_OBSERVATION_SCHEMA = pa.schema([
+    field for field in OBSERVATION_SCHEMA if field.name != "sex_code"
+])
+OBSERVATION_SCHEMAS = {
+    "health_observations": OBSERVATION_SCHEMA,
+    "disease_observations": ANNUAL_OBSERVATION_SCHEMA,
+    "vaccination_coverage": ANNUAL_OBSERVATION_SCHEMA,
+}
 
 
 class ValidationError(ValueError):
@@ -192,22 +245,40 @@ def build_references(bronze_dir):
     return references
 
 
-def build_observations(bronze_dir, references):
+def build_observations(bronze_dir, references, table="health_observations"):
+    schema = OBSERVATION_SCHEMAS[table]
+    has_sex = "sex_code" in schema.names
+    grain = [column for column in GRAIN if column in schema.names]
     frames = []
     input_count = 0
     for code, metadata in INDICATORS.items():
+        if metadata["table"] != table:
+            continue
         filename = metadata["filename"]
         frame = read_collection(bronze_dir / filename, OBSERVATION_COLUMNS)
-        strings(frame, ["IndicatorCode", "SpatialDimType", "SpatialDim", "TimeDimType", "Dim1Type", "Dim1", "TimeDimensionValue", "TimeDimensionBegin", "TimeDimensionEnd"], filename)
+        strings(frame, ["IndicatorCode", "SpatialDimType", "SpatialDim", "TimeDimType", "TimeDimensionValue", "TimeDimensionBegin", "TimeDimensionEnd"], filename)
         strings(frame, ["Value", "Date", "ParentLocationCode", "ParentLocation"], filename, nullable=True)
         require(frame["IndicatorCode"].eq(code).all(), f"{filename}: expected indicator {code}")
         require(frame["TimeDimType"].eq("YEAR").all(), f"{filename}: unsupported time dimension")
-        require(frame["Dim1Type"].eq("SEX").all(), f"{filename}: unsupported first dimension")
+        if has_sex:
+            strings(frame, ["Dim1Type", "Dim1"], filename)
+            require(frame["Dim1Type"].eq("SEX").all(), f"{filename}: unsupported first dimension")
+        else:
+            require(frame[["Dim1Type", "Dim1"]].isna().all().all(),
+                    f"{filename}: unexpected demographic breakdown")
         require(frame[UNUSED_DIMENSIONS].isna().all().all(), f"{filename}: unexpected additional dimensions")
         frame["TimeDim"] = numbers(frame["TimeDim"], f"{filename}: TimeDim", "Int16")
         frame["Id"] = numbers(frame["Id"], f"{filename}: Id", "Int64")
         for column in ["NumericValue", "Low", "High"]:
             frame[column] = numbers(frame[column], f"{filename}: {column}", "Float64", nullable=True)
+        if table != "health_observations":
+            for column in ["NumericValue", "Low", "High"]:
+                values = frame[column].dropna()
+                require(values.ge(0).all(), f"{filename}: negative {column}")
+                if metadata["unit"] == "percent":
+                    require(values.le(100).all(), f"{filename}: {column} exceeds 100 percent")
+                elif metadata["unit"] == "reported_cases":
+                    require(values.mod(1).eq(0).all(), f"{filename}: fractional case count")
         frame["period_start"] = period_dates(frame["TimeDimensionBegin"], filename)
         frame["period_end"] = period_dates(frame["TimeDimensionEnd"], filename)
         require(frame["TimeDimensionValue"].eq(frame["TimeDim"].astype("string")).all(),
@@ -228,11 +299,12 @@ def build_observations(bronze_dir, references):
         "TimeDim": "year", "Dim1": "sex_code", "NumericValue": "estimate", "Low": "lower_bound", "High": "upper_bound",
         "Value": "display_value", "Id": "source_observation_id", "Date": "source_date",
     })
-    unique(observations, GRAIN, "health observations")
+    unique(observations, grain, table)
     members(observations["indicator_code"], references["ref_indicators"]["indicator_code"], "indicator")
     indicator_names = references["ref_indicators"].set_index("indicator_code")["indicator_name"]
     observations["indicator_name"] = observations["indicator_code"].map(indicator_names)
-    members(observations["sex_code"], references["ref_sexes"]["sex_code"], "sex")
+    if has_sex:
+        members(observations["sex_code"], references["ref_sexes"]["sex_code"], "sex")
     members(observations["location_type"], ["COUNTRY", "REGION", "WORLDBANKINCOMEGROUP", "GLOBAL"], "location type")
     for location_type, table, key in [
         ("COUNTRY", "ref_countries", "country_code"),
@@ -259,7 +331,7 @@ def build_observations(bronze_dir, references):
     require(observations.loc[~is_country, ["ParentLocationCode", "ParentLocation"]].isna().all().all(),
             "Aggregate observations: unexpected parent location")
     require(len(observations) == input_count, "Observation row count changed during transformation")
-    return observations[OBSERVATION_SCHEMA.names].sort_values(GRAIN).reset_index(drop=True)
+    return observations[schema.names].sort_values(grain).reset_index(drop=True)
 
 
 def arrow_table(frame, schema, label):
@@ -272,8 +344,10 @@ def build_silver(bronze_dir=Path("bronze_layer"), silver_dir=Path("silver_layer"
     """Validate all inputs before writing; return the number of rows in each output."""
     bronze_dir, silver_dir = Path(bronze_dir), Path(silver_dir)
     references = build_references(bronze_dir)
-    observations = build_observations(bronze_dir, references)
-    tables = {"health_observations": arrow_table(observations, OBSERVATION_SCHEMA, "health observations")}
+    tables = {}
+    for name, schema in OBSERVATION_SCHEMAS.items():
+        observations = build_observations(bronze_dir, references, name)
+        tables[name] = arrow_table(observations, schema, name)
     for name, frame in references.items():
         schema = pa.schema([
             pa.field(column, pa.string(), nullable=(name == "ref_countries" and column == "region_code"))

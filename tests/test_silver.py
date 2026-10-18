@@ -67,6 +67,18 @@ class SilverTests(unittest.TestCase):
             "life_expectancy_at_birth": [observation("WHOSIS_000001", year=2023, estimate=75.2)],
             "hale_at_birth": [observation("WHOSIS_000002", year=2023, estimate=65.1)],
         }
+        for code, filename, label, estimate in [
+            ("MDG_0000000020", "tuberculosis_incidence", "Tuberculosis incidence", 120.0),
+            ("MALARIA_EST_INCIDENCE", "malaria_incidence", "Malaria incidence", 2.5),
+            ("WHS3_62", "measles_reported_cases", "Reported measles cases", 0.0),
+            ("WHS4_100", "dtp3_coverage", "DTP3 coverage", 100.0),
+            ("WHS8_110", "measles_mcv1_coverage", "MCV1 coverage", 0.0),
+            ("MCV2", "measles_mcv2_coverage", "MCV2 coverage", None),
+        ]:
+            self.rows["indicators"].append({
+                "IndicatorCode": code, "IndicatorName": label, "Language": "EN",
+            })
+            self.rows[filename] = [dict(observation(code, estimate=estimate), Dim1Type=None, Dim1=None)]
         self.rows["life_expectancy_at_birth"][0].update(Low=72.0, High=78.0, Comments="Bronze-only annotation")
         self.save_inputs()
 
@@ -103,7 +115,67 @@ class SilverTests(unittest.TestCase):
         countries = {row["country_code"]: row for row in self.output_rows("ref_countries")}
         self.assertIsNone(countries["ZZZ"]["region_code"])
         units = {row["indicator_code"]: row["unit"] for row in self.output_rows("ref_indicators")}
-        self.assertEqual(units, {"WHOSIS_000004": "per_1000", "WHOSIS_000001": "years", "WHOSIS_000002": "years"})
+        self.assertEqual(units, {
+            "WHOSIS_000004": "per_1000", "WHOSIS_000001": "years", "WHOSIS_000002": "years",
+            "MDG_0000000020": "per_100000_population_per_year",
+            "MALARIA_EST_INCIDENCE": "per_1000_population_at_risk_per_year",
+            "WHS3_62": "reported_cases",
+            "WHS4_100": "percent", "WHS8_110": "percent", "MCV2": "percent",
+        })
+
+    def test_annual_tables_preserve_rates_counts_coverage_and_absent_breakdowns(self):
+        silver.build_silver(self.bronze, self.output)
+        disease = {row["indicator_code"]: row for row in self.output_rows("disease_observations")}
+        vaccination = {row["indicator_code"]: row for row in self.output_rows("vaccination_coverage")}
+        self.assertEqual(set(disease), {"MDG_0000000020", "MALARIA_EST_INCIDENCE", "WHS3_62"})
+        self.assertEqual(set(vaccination), {"WHS4_100", "WHS8_110", "MCV2"})
+        self.assertEqual(disease["MALARIA_EST_INCIDENCE"]["estimate"], 2.5)
+        self.assertEqual(disease["WHS3_62"]["estimate"], 0.0)
+        self.assertEqual(vaccination["WHS4_100"]["estimate"], 100.0)
+        self.assertEqual(vaccination["WHS8_110"]["estimate"], 0.0)
+        self.assertIsNone(vaccination["MCV2"]["estimate"])
+        for row in [*disease.values(), *vaccination.values()]:
+            self.assertNotIn("sex_code", row)
+            self.assertEqual(row["location_code"], "SAU")
+            self.assertEqual(row["period_start"], date(2021, 1, 1))
+        self.assertEqual(vaccination["MCV2"]["indicator_name"], "MCV2 coverage")
+
+    def test_annual_duplicate_keys_and_new_breakdowns_fail_before_publication(self):
+        silver.build_silver(self.bronze, self.output)
+        before = {path.name: path.read_bytes() for path in self.output.iterdir()}
+        for name in ["tuberculosis_incidence", "dtp3_coverage"]:
+            original = deepcopy(self.rows[name])
+            for rows in [
+                [original[0], dict(original[0], Id=999)],
+                [dict(original[0], Dim1Type="SEX", Dim1="SEX_BTSX")],
+                [dict(original[0], Dim2Type="AGEGROUP", Dim2="AGE_5")],
+                [dict(original[0], Dim1="SEX_BTSX")],
+            ]:
+                with self.subTest(name=name, rows=rows):
+                    self.rows[name] = rows
+                    self.save_inputs()
+                    with self.assertRaises(silver.ValidationError):
+                        silver.build_silver(self.bronze, self.output)
+                    self.assertEqual(before, {path.name: path.read_bytes() for path in self.output.iterdir()})
+            self.rows[name] = original
+
+    def test_disease_and_vaccination_measure_boundaries(self):
+        for name, update in [
+            ("dtp3_coverage", {"NumericValue": 100.1}),
+            ("dtp3_coverage", {"NumericValue": -1}),
+            ("measles_mcv2_coverage", {"High": 101}),
+            ("measles_reported_cases", {"NumericValue": 1.5}),
+            ("tuberculosis_incidence", {"Low": -1}),
+            ("malaria_incidence", {"NumericValue": -0.1}),
+        ]:
+            with self.subTest(name=name, update=update):
+                original = deepcopy(self.rows[name][0])
+                self.rows[name][0].update(update)
+                self.save_inputs()
+                with self.assertRaises(silver.ValidationError):
+                    silver.build_silver(self.bronze, self.output)
+                self.assertFalse(self.output.exists())
+                self.rows[name][0] = original
 
     def test_rerun_is_equivalent_and_bronze_is_unchanged(self):
         before = {path.name: path.read_bytes() for path in self.bronze.iterdir()}

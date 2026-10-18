@@ -92,6 +92,30 @@ def get_hale_birth():
     return fetch_data("hale_at_birth", endpoint)
 
 
+def get_tuberculosis_incidence():
+    return fetch_data("tuberculosis_incidence", f"{url}/api/MDG_0000000020")
+
+
+def get_malaria_incidence():
+    return fetch_data("malaria_incidence", f"{url}/api/MALARIA_EST_INCIDENCE")
+
+
+def get_measles_reported_cases():
+    return fetch_data("measles_reported_cases", f"{url}/api/WHS3_62")
+
+
+def get_dtp3_coverage():
+    return fetch_data("dtp3_coverage", f"{url}/api/WHS4_100")
+
+
+def get_measles_mcv1_coverage():
+    return fetch_data("measles_mcv1_coverage", f"{url}/api/WHS8_110")
+
+
+def get_measles_mcv2_coverage():
+    return fetch_data("measles_mcv2_coverage", f"{url}/api/MCV2")
+
+
 def main():
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     datasets = (
@@ -104,6 +128,12 @@ def main():
         get_adult_mortality,
         get_le_birth,
         get_hale_birth,
+        get_tuberculosis_incidence,
+        get_malaria_incidence,
+        get_measles_reported_cases,
+        get_dtp3_coverage,
+        get_measles_mcv1_coverage,
+        get_measles_mcv2_coverage,
     )
     failures = 0
     for ingest in datasets:

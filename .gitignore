@@ -1,3 +1,5 @@
 env/
 WHO_GHO_Chat_Notes.md
 /SILVER_CODE_WALKTHROUGH.md
+__pycache__/
+*.py[cod]
