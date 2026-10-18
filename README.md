@@ -8,7 +8,7 @@ This project explores those questions by building a data pipeline around the Wor
 
 For readers interested in public health, the project offers a path toward clearer country comparisons and historical trends. For technical readers, it demonstrates the engineering behind those comparisons: API ingestion, raw data preservation, data quality checks, and dimensional modelling.
 
-> **Status: early development.** Bronze ingestion and validated silver Parquet transformations are implemented. Gold analytical models remain planned.
+> **Status: analytical preparation.** Bronze ingestion, validated silver Parquet transformations, and two country-level gold marts are implemented. Published findings and dashboards remain future work.
 
 ## What this project aims to explore
 
@@ -31,11 +31,11 @@ The architecture follows three layers:
 
 | Layer | Purpose | Status |
 | --- | --- | --- |
-| **Bronze** | Preserve source responses and ingestion context | Prototype in progress |
+| **Bronze** | Preserve source responses and ingestion context | Implemented |
 | **Silver** | Standardize fields, resolve reference codes, and validate observations | Implemented |
-| **Gold** | Organize health metrics into analytical fact and dimension tables | Planned |
+| **Gold** | Organize compatible country-level metrics into analytical marts | Implemented |
 
-Python and `requests` handle extraction, with JSON used for raw storage. Pandas performs silver transformations and PyArrow writes typed Parquet outputs. DuckDB and dbt remain optional later choices, not current dependencies.
+Python and `requests` handle extraction, with JSON used for raw storage. Pandas performs silver and gold transformations and PyArrow writes typed Parquet outputs. DuckDB and dbt remain optional later choices, not current dependencies.
 
 ## What works today
 
@@ -188,6 +188,78 @@ All eight Parquet files are written to a temporary staging directory before any 
 
 For analysis across the three original health indicators, use matching geography/year/sex keys; the audited shared period is 2000-2021. Do not remove the additional 2022-2023 LE/HALE rows from silver. Joining annual disease or vaccination observations to sex-specific health rows repeats the annual measure across sexes; filter to a compatible health population before comparison. Matching keys or source dates alone does not establish methodological comparability between estimation releases.
 
+## Gold analytical questions and schema
+
+`gold.py` reads validated silver Parquet files offline. The initial design uses two wide, labelled country-level marts rather than a star schema with surrogate keys and copied dimensions. Natural country/year/sex keys suffice for these questions; separate grains prevent annual disease measures from being repeated across sex-specific health rows.
+
+### Questions supported
+
+| Analytical question | Measures and comparison rule |
+| --- | --- |
+| How have population health outcomes changed within and across countries? | Life expectancy, HALE, and adult mortality; compare the same indicator, sex, and selected years. Use 2000–2021 when all three are required in the current snapshot. |
+| How large is the gap between life expectancy and HALE, and how has it changed? | `life_expectancy_years - healthy_life_expectancy_years` at the same country/year/sex key. This is a difference between summary estimates, not a count of people with illness. |
+| How do female and male outcomes differ? | Match country/year and subtract the selected male estimate from the female estimate. Keep both-sex estimates separate; do not average male/female estimates to reconstruct them. |
+| How have TB and malaria incidence changed, and which countries have higher values in a selected year? | Compare each indicator separately. TB is per 100,000 population per year; malaria is per 1,000 population at risk per year. Neither is a case count. |
+| Which countries have lower or declining vaccination coverage? | Compare the same vaccine/dose and selected year. Absolute coverage change is measured in percentage points, not percent change. Only call it year-on-year when the years are consecutive. |
+| How do reported measles cases and vaccination coverage vary together? | Use country/year rows with non-null case and coverage estimates. Counts depend on population size, surveillance, and reporting; this is descriptive, not evidence of causality or vaccine effectiveness. |
+
+Country comparisons must state their selected year and number of countries with non-null estimates. Do not silently compare each country's latest available year. For changes over time, use matched countries and report exclusions. No coverage threshold, country ranking, causal model, or regional average is imposed by the transformation.
+
+### Geography and time scope
+
+- Include only silver observations with `location_type == COUNTRY`, including all country-reference entries with observations; no additional geopolitical filter is applied.
+- Keep all observed years and the union of keys across each mart's indicators. Do not create a full country/year grid or restrict outputs to complete cases.
+- Preserve true zeroes and missing estimates. A null gold measure can mean either no source observation or a source observation with a null estimate; inspect silver to distinguish them.
+- Keep country and region labels for filtering. Region membership comes from the current reference snapshot, not historical membership.
+- Leave WHO regional, global, and income-group aggregates in silver. Gold does not recompute them. Country income-group assignment and population denominators are not available.
+- Joining the two marts requires filtering health to `sex_code == "SEX_BTSX"` first for country-level descriptive comparisons; otherwise annual measures repeat across sexes. This filter alone does not make different target populations or estimation methods comparable.
+
+Observed availability in the current silver snapshot, counting countries with at least one non-null estimate:
+
+| Indicator | Countries | Years |
+| --- | ---: | --- |
+| Life expectancy and HALE, each | 185 | 2000–2023 |
+| Adult mortality | 185 | 2000–2021 |
+| TB incidence | 197 | 2000–2024 |
+| Malaria incidence | 110 | 2000–2024 |
+| Reported measles cases | 214 | 1974–2025 |
+| DTP3, MCV1, and MCV2 coverage, each | 195 | 2000–2025 |
+
+These ranges do not imply complete annual coverage for every country. In particular, missing malaria estimates must not be interpreted as zero incidence. The latest source year is not a guarantee of final reporting.
+
+### Output contract
+
+Both marts contain non-null string `country_code` and `country_name`, nullable string `region_code` and `region_name`, and non-null int16 `year`. All measures are nullable float64, including reported measles counts, which retain silver's numeric representation.
+
+| Output | Unique grain | Measures |
+| --- | --- | --- |
+| `gold_layer/country_health.parquet` | `country_code + year + sex_code` | `life_expectancy_years`, `healthy_life_expectancy_years`, `adult_mortality_per_1000`, `life_expectancy_hale_gap_years` |
+| `gold_layer/country_disease_vaccination.parquet` | `country_code + year` | `tb_incidence_per_100000`, `malaria_incidence_per_1000_at_risk`, `measles_reported_cases`, `dtp3_coverage_percent`, `mcv1_coverage_percent`, `mcv2_coverage_percent` |
+
+`country_health` also contains non-null string `sex_code` and `sex_name`. The LE–HALE gap is computed only when both estimates exist at exactly the same key; otherwise it is null. No uncertainty interval is derived for the difference.
+
+Gold measure names map to silver indicators as follows:
+
+| Gold measure | Silver indicator |
+| --- | --- |
+| `life_expectancy_years` | `WHOSIS_000001` |
+| `healthy_life_expectancy_years` | `WHOSIS_000002` |
+| `adult_mortality_per_1000` | `WHOSIS_000004` |
+| `tb_incidence_per_100000` | `MDG_0000000020` |
+| `malaria_incidence_per_1000_at_risk` | `MALARIA_EST_INCIDENCE` |
+| `measles_reported_cases` | `WHS3_62` |
+| `dtp3_coverage_percent` | `WHS4_100` |
+| `mcv1_coverage_percent` | `WHS8_110` |
+| `mcv2_coverage_percent` | `MCV2` |
+
+Gold is an estimate-focused analytical projection, not a replacement for silver. Indicator definitions and URLs remain in `silver_layer/ref_indicators.parquet`. Bounds, display values, source IDs, and source dates remain in the relevant silver observation table; recover them using the mapped indicator code, `location_type == COUNTRY`, country/year, and sex for health observations. Matching keys alone does not establish comparability between source estimation releases.
+
+Duplicate observation keys and unresolved country/sex/region references fail rather than aggregate or silently drop rows. All transformations and typed Arrow conversions finish before publication. Both files are staged before replacement; replacement is atomic per file, not across the pair. An unsuccessful run must not be treated as a new valid gold dataset. Rerun the full build after an interrupted publication.
+
+### Verified gold build
+
+The 2026-10-18 build produced **13,320 country-health rows** and **10,720 country-disease/vaccination rows**. All nine source measures and both country-key unions were reconciled against silver. Smoke queries exercised health trends, LE–HALE gaps, female/male differences, disease trends, coverage changes, and matched measles/coverage observations. In 2024, 182 countries had non-null measles, MCV1, and MCV2 estimates together; this is a comparison sample, not a completeness claim.
+
 ## Run the pipeline
 
 Python 3.11 was used for verification. From the project root:
@@ -198,9 +270,10 @@ source .venv/bin/activate
 pip install -r requirements.txt
 python main.py
 python silver.py
+python gold.py
 ```
 
-`main.py` requires internet access and refreshes all fifteen bronze datasets, overwriting their existing files. If the bronze files are already available, skip ingestion and run only `silver.py`; transformation is offline.
+`main.py` requires internet access and refreshes all fifteen bronze datasets, overwriting their existing files. If bronze files are already available, skip ingestion. Both `silver.py` and `gold.py` run offline; gold requires a successful silver build, not the CSV viewing snapshots.
 
 Silver requires the nine observation files plus `indicators.json`, `country_vals.json`, `sex_vals.json`, `region_vals.json`, and `income_group_vals.json`. It exits with code `0` only after all eight outputs have been written, or `1` on input, validation, conversion, or filesystem failure. Errors are logged to stderr.
 
@@ -208,17 +281,36 @@ Custom input/output directories are supported:
 
 ```bash
 python silver.py --bronze-dir bronze_layer --silver-dir silver_layer
+python gold.py --silver-dir silver_layer --gold-dir gold_layer
 ```
 
 Reference-table input paths recorded in `source_file` are relative to the project root, including when a custom input directory is used. Importing `silver.py` does not run the pipeline.
 
-Run ingestion and silver regression checks with:
+Gold requires `health_observations`, `disease_observations`, `vaccination_coverage`, `ref_countries`, `ref_regions`, and `ref_sexes` Parquet files from the validated silver build. It exits with code `0` after writing both marts, or `1` on input, transformation, or filesystem failure. Importing `gold.py` does not run it. No additional dependencies are needed.
+
+For example, select a common year and explicitly require the measures needed for a measles/coverage comparison:
+
+```python
+import pandas as pd
+
+annual = pd.read_parquet("gold_layer/country_disease_vaccination.parquet")
+comparison = annual.loc[annual["year"].eq(2024)].dropna(
+    subset=["measles_reported_cases", "mcv1_coverage_percent", "mcv2_coverage_percent"]
+)
+print(comparison[[
+    "country_code", "country_name", "year",
+    "measles_reported_cases", "mcv1_coverage_percent", "mcv2_coverage_percent",
+]].to_string(index=False))
+print(f"Countries included: {len(comparison)}")
+```
+
+Run ingestion, silver, and gold regression checks with:
 
 ```bash
 python -B -m unittest discover -s tests -v
 ```
 
-The checks use temporary directories; ingestion HTTP responses are simulated, and silver tests exercise real Parquet output. They do not contact WHO or overwrite project datasets. They cover preservation of nulls and aggregates, local-calendar date handling, reference joins, duplicate keys, invalid dimensions and numbers, measure boundaries, repeatability, and failure-safe staging.
+The checks use temporary directories; ingestion HTTP responses are simulated, and silver/gold tests exercise real Parquet output. They do not contact WHO or overwrite project datasets. Silver checks cover preservation of nulls and aggregates, local-calendar date handling, reference joins, duplicate keys, invalid dimensions and numbers, measure boundaries, repeatability, and failure-safe staging. Gold checks cover exact country/year/sex matching, null-only rows, zero-versus-missing values, nonoverlapping source years, aggregate exclusion, and rejection of invalid keys without replacing previous outputs. All 23 tests passed after the gold addition.
 
 ### Verified endpoint profile and outputs
 
@@ -245,11 +337,10 @@ python -c 'from pathlib import Path; import pandas as pd; output = Path("silver_
 
 ## Next milestones
 
-- Explore the silver tables with reproducible analytical queries and compare compatible country/year/sex observations.
-- Define gold model grains and measures from the validated silver outputs.
-- Improve bronze persistence and run history separately, without making completeness verification a prerequisite for silver.
-- Build gold analytical models after the silver contract is stable.
-- Document analytical examples as the pipeline matures.
+- Use the gold marts to answer the documented questions with explicitly selected years and matched comparison samples.
+- Develop reports and visualizations without mixing rates, case counts, coverage percentages, or sex-specific populations.
+- Improve bronze persistence and run history separately, without making completeness verification a prerequisite for analysis.
+- Add regional or income-group analytical models only with explicit aggregation rules and suitable population weights or membership data.
 
 ## Data source
 
