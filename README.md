@@ -20,7 +20,7 @@ The implemented scope covers **population health, disease burden, and vaccinatio
 - Tuberculosis and malaria incidence
 - Reported measles cases
 - DTP3, measles first-dose (MCV1), and measles second-dose (MCV2) vaccination coverage
-
+<!--
 These measures support six analytical questions:
 
 - How have life expectancy, HALE, and adult mortality changed over time?
@@ -29,7 +29,7 @@ These measures support six analytical questions:
 - How have TB and malaria incidence changed within and across countries?
 - Which countries have lower or declining vaccination coverage?
 - How do reported measles cases and vaccination coverage vary together?
-
+-->
 ## Architecture
 
 The architecture follows three layers:
@@ -61,7 +61,7 @@ Gold contains two fact tables sharing country and year dimensions; health facts 
 | `fact_country_disease_vaccination` | Country × year | TB/malaria incidence, reported measles cases, and DTP3/MCV1/MCV2 coverage |
 
 A repeated country key across different years or sexes is expected—not a duplicate observation. Separate fact grains prevent annual disease and vaccination measures from being repeated across sex-specific health records.
-
+<!--
 ## Methodology and interpretation
 
 - **Preserve observations, not just complete cases.** Keep all available country/year combinations and distinguish missing estimates from true zeroes. Duplicate observation keys, invalid measures, and unresolved references are rejected rather than silently corrected.
@@ -74,7 +74,8 @@ A repeated country key across different years or sexes is expected—not a dupli
 Years vary by indicator and country. The current snapshot's shared period for LE, HALE, and adult mortality is **2000–2021**; retain later observations for questions that do not require all three. Never substitute each country's latest year for a common comparison year. Source completeness and final reporting are not guaranteed, and matching keys alone does not establish comparability between estimation releases.
 
 Indicator definitions, units, and WHO metadata links are available in [`silver_exports/ref_indicators.csv`](silver_exports/ref_indicators.csv). For source estimates, bounds, and identifiers, consult the silver observation tables.
-
+-->
+<!--
 ## Browse the outputs
 
 - **`gold_layer/`**: the five canonical Parquet tables listed above.
@@ -85,7 +86,7 @@ Indicator definitions, units, and WHO metadata links are available in [`silver_e
 The fixed five-country selection is for inspection, not a representative sample or the whole Eastern Mediterranean region. Country folders are viewing slices, not separate data models. The full gold dataset remains unrestricted.
 
 Gold CSVs refresh only when `--export-dir` is supplied. Missing values appear as blank cells, not zeroes.
-
+-->
 ## Run the pipeline
 
 Python 3.11 was used for verification. From the project root:
